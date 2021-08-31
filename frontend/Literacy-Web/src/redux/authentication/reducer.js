@@ -36,7 +36,7 @@ export default function authentication(state = initialState, action) {
         status: {
           ...state.status,
           isLoggedIn: true,
-          currentUser: action.userID,
+          currentUser: action.userId,
         },
       };
     case types.LOGIN_FAILURE:
@@ -64,7 +64,7 @@ export default function authentication(state = initialState, action) {
           ...state.status,
           valid: true,
           isLoggedIn: true,
-          currentUser: action.userID,
+          currentUser: action.userId,
         },
       };
     case types.USER_VERIFICATION_FAILURE:

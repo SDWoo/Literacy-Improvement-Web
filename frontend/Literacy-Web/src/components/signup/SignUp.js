@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import AuthSignUp from "./AuthSignUp";
 import { connect } from "react-redux";
 import { registerRequest } from "../../redux/signup/actions";
-import { duplicateIdCheckRequest } from "../../redux/signup/actions";
 
 class SignUp extends Component {
   handleRegister = (body) => {
@@ -21,25 +20,10 @@ class SignUp extends Component {
     });
   };
 
-  handleCheckID = (userID) => {
-    return this.props.duplicateIdCheckRequest(userID).then(() => {
-      if (this.props.statusID === "ABLE") {
-        // 사용 가능 시 사용가능 메세지 > 박스 띄워주기
-        return true;
-      } else {
-        return false;
-      }
-    });
-  };
-
   render() {
     return (
       <div>
-        <AuthSignUp
-          onRegister={this.handleRegister}
-          onCheckID={this.handleCheckID}
-          statusID={this.props.statusID}
-        />
+        <AuthSignUp onRegister={this.handleRegister} />
       </div>
     );
   }
@@ -49,7 +33,6 @@ const mapStateToProps = (state) => {
   console.log(state);
   return {
     statusReg: state.register.register.status,
-    statusID: state.register.duplicateId.status,
   };
 };
 
@@ -57,9 +40,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     registerRequest: (body) => {
       return dispatch(registerRequest(body));
-    },
-    duplicateIdCheckRequest: (userID) => {
-      return dispatch(duplicateIdCheckRequest(userID));
     },
   };
 };

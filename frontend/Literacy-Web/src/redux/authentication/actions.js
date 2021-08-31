@@ -10,13 +10,13 @@ import {
 } from "./types";
 
 /* LOGIN */
-export function loginRequest(userID, userPassword) {
+export function loginRequest(userId, userPassword) {
   return (dispatch) => {
     // Inform Login API is starting
     dispatch(login());
 
     let body = {
-      userID: userID,
+      userId: userId,
       userPassword: userPassword,
     };
 
@@ -27,7 +27,7 @@ export function loginRequest(userID, userPassword) {
       .post("http://localhost:8080/login", body)
       .then((response) => {
         // SUCCEED
-        dispatch(loginSuccess(userID));
+        dispatch(loginSuccess(userId));
       })
       .catch((error) => {
         // FAILED
@@ -42,10 +42,10 @@ export function login() {
   };
 }
 
-export function loginSuccess(userID) {
+export function loginSuccess(userId) {
   return {
     type: LOGIN_SUCCESS,
-    userID,
+    userId,
   };
 }
 
@@ -78,10 +78,10 @@ export function getStatus() {
   };
 }
 
-export function getStatusSuccess(userID) {
+export function getStatusSuccess(userId) {
   return {
     type: USER_VERIFICATION_SUCCESS,
-    userID,
+    userId,
   };
 }
 

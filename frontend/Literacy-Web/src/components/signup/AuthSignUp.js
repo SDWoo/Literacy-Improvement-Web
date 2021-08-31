@@ -2,6 +2,7 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import "./SignUp.css";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -74,7 +75,7 @@ class AuthSignUp extends Component {
       userName: "",
       birth: "",
       work: "",
-      userID: "",
+      userId: "",
       userPassword: "",
     };
   }
@@ -89,11 +90,7 @@ class AuthSignUp extends Component {
     this.setState({ work: e.target.value });
   };
 
-  toastCheckID_Able = () => toast("사용 가능한 아이디입니다.");
-  toastCheckID_Unable = () => toast.error("다른 아이디를 사용해주세요.");
   toastRegister_NotEnoughInfo = () => toast.error("모든 항목을 입력하세요.");
-  toastCheckID_NotCheckID = () =>
-    toast.error("아이디 사용가능 여부를 확인해주세요.");
   toastRegister_Complete = () => toast("회원가입 되었습니다.");
   toastRegister_Failure = () => toast.error("회원가입 실패하였습니다.");
 
@@ -105,24 +102,18 @@ class AuthSignUp extends Component {
       this.state.userName === "" ||
       this.state.work === "" ||
       this.state.birth === "" ||
-      this.state.userID === "" ||
+      this.state.userId === "" ||
       this.state.userPassword === ""
     ) {
       this.toastRegister_NotEnoughInfo();
       return false;
     }
 
-    // 아이디 중복확인
-    // if (this.props.statusID !== "ABLE") {
-    //   this.toastCheckID_NotCheckID();
-    //   return false;
-    // }
-
     let body = {
       userName: this.state.userName,
       birth: this.state.birth,
       work: this.state.work,
-      userID: this.state.userID,
+      userId: this.state.userId,
       userPassword: this.state.userPassword,
     };
 
@@ -131,32 +122,11 @@ class AuthSignUp extends Component {
         //실패하면 아이디 재입력 받음
         this.toastRegister_Failure();
         this.setState({
-          userID: "",
+          userId: "",
           userPassword: "",
         });
       } else {
         this.toastRegister_Complete();
-      }
-    });
-  };
-
-  handleCheckID = (e) => {
-    e.preventDefault();
-
-    let body = {
-      userID: this.state.userID,
-    };
-
-    this.props.onCheckID(body).then((success) => {
-      if (!success) {
-        //실패하면 아이디 재입력 받음
-        this.setState({
-          userID: "",
-        });
-        this.toastCheckID_Unable();
-      } else {
-        // 성공하면 아이디 사용가능 메시지 출력
-        this.toastCheckID_Able();
       }
     });
   };
@@ -231,31 +201,19 @@ class AuthSignUp extends Component {
                     </Select>
                   </FormControl>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={12}>
                   <TextField
                     variant="outlined"
                     required
                     fullWidth
-                    name="userID"
+                    name="userId"
                     label="ID"
-                    type="userID"
-                    id="userID"
-                    autoComplete="userID"
+                    type="userId"
+                    id="userId"
+                    autoComplete="userId"
                     onChange={this.onChange}
-                    value={this.state.userID}
+                    value={this.state.userId}
                   />
-                </Grid>
-                <Grid item xs={4}>
-                  <Button
-                    type="check"
-                    fullWidth
-                    variant="contained"
-                    color="primary"
-                    className={useStyles.submit}
-                    onClick={this.handleCheckID}
-                  >
-                    ID 중복확인
-                  </Button>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -316,15 +274,11 @@ class AuthSignUp extends Component {
 
 AuthSignUp.propTypes = {
   onRegister: PropTypes.func,
-  onCheckID: PropTypes.func,
 };
 
 AuthSignUp.defaultProps = {
   onRegister: (body) => {
     console.error("sign Up function not defined");
-  },
-  onCheckID: (userID) => {
-    console.error("userID duplicate check function not defined");
   },
 };
 
