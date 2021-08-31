@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import {} from "../redux";
+import { } from "../redux";
 
 function Test() {
   useEffect(() => {

@@ -2,20 +2,20 @@ import React, { useEffect } from "react";
 import { } from "../redux";
 
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: theme.spacing(10),
-        width: '100%',
-        maxWidth: '70ch',
+        paddingTop: theme.spacing(10),
+        paddingLeft: theme.spacing(5),
+        paddingRight: theme.spacing(5),
+        paddingBottom: theme.spacing(5),
+        // width: '100%',
+        // maxWidth: '100ch',
         backgroundColor: theme.palette.background.paper,
+        borderRadius: '20px',
+        border: '1px solid #D9D9D9',
     },
     inline: {
         display: 'inline',
@@ -38,6 +38,17 @@ export default function WordOfTheDay() {
     return (
         <div className={classes.root}>
             <Grid container spacing={3}>
+                <Grid item xs={3}>
+                    <h3>오늘의 단어</h3>
+                </Grid>
+                <Grid item xs={7}>
+                </Grid>
+                <Grid item xs={2} className={classes.test}>
+                    <h3 />
+                    <button >
+                        더 알아보기
+                    </button>
+                </Grid>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
                         <h4>내일  </h4>
@@ -51,51 +62,25 @@ export default function WordOfTheDay() {
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>xs=6</Paper>
                 </Grid>
-                {/* <Grid item xs={3}>
-                    <Paper className={classes.paper}>xs=3</Paper>
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>xs=6</Paper>
                 </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>xs=3</Paper>
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>xs=6</Paper>
                 </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>xs=3</Paper>
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>xs=6</Paper>
                 </Grid>
-                <Grid item xs={3}>
-                    <Paper className={classes.paper}>xs=3</Paper>
-                </Grid> */}
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>xs=6</Paper>
+                </Grid>
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>xs=6</Paper>
+                </Grid>
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>xs=6</Paper>
+                </Grid>
             </Grid>
         </div>
-        // <List className={classes.root}>
-
-        //     <ListItem alignItems="center">
-        //         <h4>
-        //             Brunch this weekend?
-        //         </h4>
-        //         <h4>
-        //             Brunch this weekend?
-        //         </h4>
-
-        //         <ListItemText
-        //             primary="Brunch this weekend?"
-        //             secondary={
-        //                 <React.Fragment>
-        //                     <Typography
-        //                         component="span"
-        //                         variant="body2"
-        //                         className={classes.inline}
-        //                         color="textPrimary"
-        //                     >
-        //                         내일
-        //                     </Typography>
-        //                     {" — I'm still hungry. you know?"}
-        //                 </React.Fragment>
-        //             }
-        //         />
-        //         <ListItemText
-        //             primary="Brunch this weekend?"
-        //         />
-        //     </ListItem>
-        //     <Divider variant="middle" component="li" />
-        // </List>
     );
 }
