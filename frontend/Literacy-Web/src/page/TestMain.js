@@ -13,7 +13,9 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles((theme) => ({
     root: {
         padding: theme.spacing(2),
+
     },
+
 }));
 
 export default function TestMain() {
@@ -29,17 +31,13 @@ export default function TestMain() {
             </TopBar>
             <div className={classes.root}>
                 <Grid container spacing={3}>
-                    <Grid item xs={7}>
+                    <Grid item xs={8}>
                         <MainWordOfTheDay>
                         </MainWordOfTheDay>
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item xs={4} >
                         <MainThemeWord>
                         </MainThemeWord>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <MainSide>
-                        </MainSide>
                     </Grid>
                     <Grid item xs={12}>
                         <MainWordMeaning>
