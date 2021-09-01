@@ -3,10 +3,12 @@ import { combineReducers } from "redux";
 import test from "./test/reducer";
 import authentication from "./authentication/reducer";
 import register from "./signup/reducer";
+import dailyWords from "./dailyWords/reducer";
 
 const rootReducer = combineReducers({
   register: register,
   authentication: authentication,
+  dailyWords: dailyWords,
 });
 
 export default rootReducer;
