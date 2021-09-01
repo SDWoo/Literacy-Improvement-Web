@@ -21,11 +21,15 @@ const useStyles = makeStyles((theme) => ({
         display: 'inline',
     },
     paper: {
-        padding: theme.spacing(2),
+        // padding: theme.spacing(2),
         // textAlign: 'center',
         color: theme.palette.text.secondary,
         display: 'flex',
+        borderBottom: '1px solid #D9D9D9',
     },
+    button: {
+        float: 'right',
+    }
 }));
 
 export default function WordOfTheDay() {
@@ -43,42 +47,61 @@ export default function WordOfTheDay() {
                 </Grid>
                 <Grid item xs={7}>
                 </Grid>
-                <Grid item xs={2} className={classes.test}>
+                <Grid item xs={2} className={classes.button}>
                     <h3 />
                     <button >
                         더 알아보기
                     </button>
                 </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>
-                        <h4>내일  </h4>
-                        <h5>명사</h5>
-                        <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-                    </Paper>
+                <Grid item xs={12} className={classes.paper}>
+                    <h4>내일  </h4>
+                    <h5>명사</h5>
+                    <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
                 </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>xs=6</Paper>
+                <Grid item xs={12} className={classes.paper}>
+                    <h4>내일</h4>
+                    <h5>명사</h5>
+                    <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
                 </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>xs=6</Paper>
+                <Grid item xs={12} className={classes.paper}>
+                    <h4>내일  </h4>
+                    <h5>명사</h5>
+                    <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
                 </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>xs=6</Paper>
+                <Grid item xs={12} className={classes.paper}>
+                    <h4>내일  </h4>
+                    <h5>명사</h5>
+                    <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
                 </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>xs=6</Paper>
+                <Grid item xs={12} className={classes.paper}>
+                    <h4>내일  </h4>
+                    <h5>명사</h5>
+                    <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
                 </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>xs=6</Paper>
+                <Grid item xs={12} className={classes.paper}>
+                    <h4>내일  </h4>
+                    <h5>명사</h5>
+                    <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
                 </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>xs=6</Paper>
+                <Grid item xs={12} className={classes.paper}>
+                    <h4>내일  </h4>
+                    <h5>명사</h5>
+                    <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
                 </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>xs=6</Paper>
+                <Grid item xs={12} className={classes.paper}>
+                    <h4>내일  </h4>
+                    <h5>명사</h5>
+                    <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
                 </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>xs=6</Paper>
+                <Grid item xs={12} className={classes.paper}>
+                    <h4>내일  </h4>
+                    <h5>명사</h5>
+                    <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
+                </Grid>
+                <Grid item xs={12} className={classes.paper}>
+                    <h4>내일  </h4>
+                    <h5>명사</h5>
+                    <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
                 </Grid>
             </Grid>
         </div>
