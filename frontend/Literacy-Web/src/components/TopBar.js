@@ -64,7 +64,6 @@ export default function TopBar() {
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
-            <Divider variant="middle" component="li" />
         </div>
     );
 }

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import TopBar from "../components/TopBar";
-import MainWordOfTheDay from "../components/MainWordOfTheDay";
-import MainThemeWord from "../components/MainThemeWord";
-import MainSide from "../components/MainSide";
-import MainWordMeaning from "../components/MainWordMeaning";
+import WordDefinition from "../components/WordDefinition";
+import WordExample from "../components/WordExample";
+import WordSide from "../components/WordSide";
 import { } from "../redux";
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -14,9 +14,12 @@ const useStyles = makeStyles((theme) => ({
     root: {
         padding: theme.spacing(2),
     },
+    padding: {
+        paddingBottom: theme.spacing(1),
+    }
 }));
 
-export default function TestMain() {
+export default function Word() {
     useEffect(() => {
         // 렌더링
     }, []);
@@ -29,21 +32,19 @@ export default function TestMain() {
             </TopBar>
             <div className={classes.root}>
                 <Grid container spacing={3}>
-                    <Grid item xs={7}>
-                        <MainWordOfTheDay>
-                        </MainWordOfTheDay>
+                    <Grid item xs={9}>
+                        <Grid item xs={12}>
+                            <WordDefinition>
+                            </WordDefinition>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <WordExample>
+                            </WordExample>
+                        </Grid>
                     </Grid>
                     <Grid item xs={3}>
-                        <MainThemeWord>
-                        </MainThemeWord>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <MainSide>
-                        </MainSide>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <MainWordMeaning>
-                        </MainWordMeaning>
+                        <WordSide>
+                        </WordSide>
                     </Grid>
                 </Grid>
             </div>

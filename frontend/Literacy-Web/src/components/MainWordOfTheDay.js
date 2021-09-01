@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(5),
         // width: '100%',
         // maxWidth: '100ch',
+        height: '110ch',
         backgroundColor: theme.palette.background.paper,
         borderRadius: '20px',
         border: '1px solid #D9D9D9',
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function WordOfTheDay() {
+export default function MainWordOfTheDay() {
     useEffect(() => {
         // 렌더링
     }, []);

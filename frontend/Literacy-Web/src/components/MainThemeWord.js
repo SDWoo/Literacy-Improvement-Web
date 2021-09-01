@@ -14,7 +14,8 @@ const useStyles = makeStyles((theme) => ({
         // padding: theme.spacing(10),
         // width: '100%',
         // maxWidth: '30ch',
-        // heigth: '100',
+        heigth: '100%',
+        minHeight: '110ch',
         backgroundColor: theme.palette.background.paper,
         border: '1px solid #D9D9D9',
         borderRadius: '20px',
@@ -81,12 +82,6 @@ export default function ThemeWord() {
                     </button>
                 </Grid>
                 <Grid item xs={12} className={classes.bottom}>
-                    <h3 />
-                    <button className={classes.test}>
-                        더 알아보기
-                    </button>
-                </Grid>
-                <Grid item xs={12} className={classes.bottom} >
                     <h3 />
                     <button className={classes.test}>
                         더 알아보기
