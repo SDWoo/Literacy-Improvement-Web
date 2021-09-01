@@ -56,36 +56,36 @@ export function loginFailure() {
 }
 
 /* GET STATUS */
-export function getStatusRequest() {
+export function checkUserRequest() {
   return (dispatch) => {
     // inform Get Status API is starting
-    dispatch(getStatus());
+    dispatch(checkUser());
 
     return axios
-      .get("http://localhost:8080/getInfo")
+      .get("http://localhost:8080/checkUser")
       .then((response) => {
-        dispatch(getStatusSuccess(response.data)); //HTTP 틍신을 통해 userId을 빋이옴
+        dispatch(checkUserSuccess(response.data)); //HTTP 틍신을 통해 userId을 빋이옴
       })
       .catch((error) => {
-        dispatch(getStatusFailure());
+        dispatch(checkUserFailure());
       });
   };
 }
 
-export function getStatus() {
+export function checkUser() {
   return {
     type: USER_VERIFICATION,
   };
 }
 
-export function getStatusSuccess(userId) {
+export function checkUserSuccess(userId) {
   return {
     type: USER_VERIFICATION_SUCCESS,
     userId,
   };
 }
 
-export function getStatusFailure() {
+export function checkUserFailure() {
   return {
     type: USER_VERIFICATION_FAILURE,
   };

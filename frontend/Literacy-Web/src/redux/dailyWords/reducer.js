@@ -25,7 +25,7 @@ export default function dailyWords(state = initialState, action) {
           ...state.status,
           valid: true,
           loading: false,
-          dailyWordsList: action.contents,
+          dailyWordsList: action.dailyWords,
         },
       };
     case types.DAILY_WORDS_REQUEST_FAILURE:

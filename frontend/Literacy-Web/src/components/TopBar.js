@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
-import {} from "../redux";
-
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { checkUserRequest, logoutRequest } from "../redux";
+import { useHistory } from "react-router";
 // import
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -43,12 +44,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TopBar() {
+function TopBar({ userStatus, checkUserRequest }) {
   useEffect(() => {
     // 렌더링
-  }, []);
+    checkUserRequest();
 
+    // 현재 경로가 '/'라면 Home으로 이동
+    if (thisPath === "/") {
+      history.push("/Home");
+    }
+  }, []);
+  const history = useHistory();
+  let thisPath = history.location.pathname;
   const classes = useStyles();
+
+  const loginButton = (
+    <div>
+      <Button href="/Login" color="inherit">
+        로그인
+      </Button>
+      <Button href="/SignUp" color="inherit">
+        회원가입
+      </Button>
+    </div>
+  );
+  const logoutButton = <Button color="inherit">로그아웃</Button>;
   // 사용자에게 보여지는 부분
   return (
     <div className={classes.root}>
@@ -65,10 +85,28 @@ export default function TopBar() {
           <Typography variant="h6" className={classes.title}>
             Kotudy
           </Typography>
-          <Button color="inherit">Login</Button>
+          {userStatus.isLoggedIn ? logoutButton : loginButton}
         </Toolbar>
       </AppBar>
       <Divider variant="middle" component="li" />
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    userStatus: state.authentication.status,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logoutRequest: () => {
+      return dispatch(logoutRequest());
+    },
+    checkUserRequest: () => {
+      return dispatch(checkUserRequest());
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TopBar);

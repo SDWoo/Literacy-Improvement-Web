@@ -30,7 +30,6 @@ function TestMain({ dailyWordsList, dailyWordsRequest }) {
   // 사용자에게 보여지는 부분
   return (
     <div>
-      <TopBar></TopBar>
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={7}>
@@ -56,9 +55,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    //   getMainRequest: (category) => {
-    //     return dispatch(getMainRequest(category));
-    //   }
     dailyWordsRequest: () => {
       return dispatch(dailyWordsRequest());
     },
