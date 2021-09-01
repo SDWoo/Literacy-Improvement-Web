@@ -21,7 +21,6 @@ function TestMain({ dailyWordsList, dailyWordsRequest }) {
   useEffect(() => {
     // 렌더링
     dailyWordsRequest();
-    console.log(1);
   }, []);
 
   const classes = useStyles();
@@ -35,7 +34,7 @@ function TestMain({ dailyWordsList, dailyWordsRequest }) {
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={7}>
-            <WordOfTheDay></WordOfTheDay>
+            <WordOfTheDay dailyWordsList={dailyWordsList}></WordOfTheDay>
           </Grid>
           <Grid item xs={3}>
             <ThemeWord></ThemeWord>

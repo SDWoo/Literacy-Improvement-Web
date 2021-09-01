@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function WordOfTheDay({}) {
+export default function WordOfTheDay({ dailyWordsList }) {
   useEffect(() => {
     // 렌더링
   }, []);
@@ -51,56 +51,13 @@ export default function WordOfTheDay({}) {
           <h3 />
           <button>더 알아보기</button>
         </Grid>
-        <Grid item xs={12} className={classes.paper}>
-          <h4>내일 </h4>
-          <h5>명사</h5>
-          <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-        </Grid>
-        <Grid item xs={12} className={classes.paper}>
-          <h4>내일</h4>
-          <h5>명사</h5>
-          <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-        </Grid>
-        <Grid item xs={12} className={classes.paper}>
-          <h4>내일 </h4>
-          <h5>명사</h5>
-          <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-        </Grid>
-        <Grid item xs={12} className={classes.paper}>
-          <h4>내일 </h4>
-          <h5>명사</h5>
-          <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-        </Grid>
-        <Grid item xs={12} className={classes.paper}>
-          <h4>내일 </h4>
-          <h5>명사</h5>
-          <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-        </Grid>
-        <Grid item xs={12} className={classes.paper}>
-          <h4>내일 </h4>
-          <h5>명사</h5>
-          <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-        </Grid>
-        <Grid item xs={12} className={classes.paper}>
-          <h4>내일 </h4>
-          <h5>명사</h5>
-          <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-        </Grid>
-        <Grid item xs={12} className={classes.paper}>
-          <h4>내일 </h4>
-          <h5>명사</h5>
-          <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-        </Grid>
-        <Grid item xs={12} className={classes.paper}>
-          <h4>내일 </h4>
-          <h5>명사</h5>
-          <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-        </Grid>
-        <Grid item xs={12} className={classes.paper}>
-          <h4>내일 </h4>
-          <h5>명사</h5>
-          <h4>이건 이런뜻이고~~~~~~~~~~~~~~~</h4>
-        </Grid>
+        {dailyWordsList.map((word, index) => (
+          <Grid item xs={12} className={classes.paper}>
+            <h4>{word.word}</h4>
+            <h5>{word.morpheme}</h5>
+            <h4>{word.mean}</h4>
+          </Grid>
+        ))}
       </Grid>
     </div>
   );

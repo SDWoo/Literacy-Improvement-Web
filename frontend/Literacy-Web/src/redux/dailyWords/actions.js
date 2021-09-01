@@ -10,12 +10,10 @@ import {
 export function dailyWordsRequest() {
   return (dispatch) => {
     dispatch(dailyWordsRequestStatus());
-    console.log(2);
     return axios
-      .get("http://localhost:8080/dailyWords", {})
+      .get("http://localhost:8080/dailyWords")
       .then((response) => {
         dispatch(dailyWordsRequestSuccess(response.data));
-        console.log(response.data);
       })
       .catch((error) => {
         dispatch(dailyWordsRequestFailure());
