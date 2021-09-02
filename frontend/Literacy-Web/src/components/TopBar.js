@@ -82,7 +82,7 @@ function TopBar({ userStatus, checkUserRequest }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography href="/" variant="h6" className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
             Kotudy
           </Typography>
           {userStatus.isLoggedIn ? logoutButton : loginButton}

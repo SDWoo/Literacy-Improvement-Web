@@ -33,14 +33,15 @@ function Main({ dailyWordsList, dailyWordsRequest }) {
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={8}>
-            <MainWordOfTheDay dailyWordsList={dailyWordsList}></MainWordOfTheDay>
+            <MainWordOfTheDay
+              dailyWordsList={dailyWordsList}
+            ></MainWordOfTheDay>
           </Grid>
           <Grid item xs={4}>
             <MainThemeWord></MainThemeWord>
           </Grid>
           <Grid item xs={12}>
-            <MainWordMeaning>
-            </MainWordMeaning>
+            <MainWordMeaning></MainWordMeaning>
           </Grid>
         </Grid>
       </div>
