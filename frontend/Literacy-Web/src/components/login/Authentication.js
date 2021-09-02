@@ -84,6 +84,7 @@ class Authentication extends Component {
         });
       } else {
         this.toastCheckInfo_Complete();
+        window.location.replace("/");
       }
     });
   };

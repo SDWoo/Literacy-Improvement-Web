@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TopBar({ userStatus, checkUserRequest }) {
+function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
   useEffect(() => {
     // 렌더링
     checkUserRequest();
@@ -58,6 +58,10 @@ function TopBar({ userStatus, checkUserRequest }) {
   let thisPath = history.location.pathname;
   const classes = useStyles();
 
+  const onLogout = (e) => {
+    logoutRequest().then(() => {});
+  };
+
   const loginButton = (
     <div>
       <Button href="/Login" color="inherit">
@@ -68,7 +72,12 @@ function TopBar({ userStatus, checkUserRequest }) {
       </Button>
     </div>
   );
-  const logoutButton = <Button color="inherit">로그아웃</Button>;
+  const logoutButton = (
+    <Button href="/Home" color="inherit" onClick={onLogout}>
+      로그아웃
+    </Button>
+  );
+
   // 사용자에게 보여지는 부분
   return (
     <div className={classes.root}>

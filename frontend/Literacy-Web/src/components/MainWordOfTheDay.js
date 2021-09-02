@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MainWordOfTheDay({ dailyWordsList }) {
+export default function MainWordOfTheDay({ dailyWordsList, isLoggedIn }) {
   let firstPageWordsList = [];
   let secondPageWordsList = [];
   const [dailyWordPage, setDailyWordPage] = useState("1");
@@ -50,13 +50,8 @@ export default function MainWordOfTheDay({ dailyWordsList }) {
   const classes = useStyles();
 
   // 오늘의 단어 10개 5 / 5로 나눔
-  function wordSplit() {
-    dailyWordsList.map((word, index) =>
-      index === 4
-        ? firstPageWordsList.push(word)
-        : secondPageWordsList.push(word)
-    );
-  }
+  firstPageWordsList = dailyWordsList.slice(0, 5);
+  secondPageWordsList = dailyWordsList.slice(5, 11);
 
   const firstPageWords = firstPageWordsList.map((word, index) => (
     <Grid item xs={12} className={classes.paper}>
@@ -82,6 +77,10 @@ export default function MainWordOfTheDay({ dailyWordsList }) {
     console.log(dailyWordPage);
   };
 
+  const gotoLogin = (e) => {
+    window.location.replace("/Login");
+  };
+
   const nextDailyWordButton = (
     <Button color="primary" onClick={handleNextDailyWords} variant="contained">
       다음 단어보기
@@ -94,10 +93,22 @@ export default function MainWordOfTheDay({ dailyWordsList }) {
     </Button>
   );
 
+  const dailyWord = (
+    <>
+      {dailyWordPage === "1" ? firstPageWords : secondPageWords}
+      {dailyWordPage === "1" ? nextDailyWordButton : beforeDailyWordButton}
+    </>
+  );
+  const requestLogin = (
+    <Button color="primary" onClick={gotoLogin} variant="contained">
+      로그인 후 이용해 주세요.
+    </Button>
+  );
+
   // 사용자에게 보여지는 부분
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={0.5}>
         <Grid item xs={3}>
           <h3>오늘의 단어</h3>
         </Grid>
@@ -106,8 +117,7 @@ export default function MainWordOfTheDay({ dailyWordsList }) {
           <h3 />
           <button>더 알아보기</button>
         </Grid>
-        {dailyWordPage === "1" ? firstPageWords : secondPageWords}
-        {dailyWordPage === "1" ? nextDailyWordButton : beforeDailyWordButton}
+        {isLoggedIn ? dailyWord : requestLogin}
       </Grid>
     </div>
   );

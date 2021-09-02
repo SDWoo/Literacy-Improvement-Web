@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Main({ dailyWordsList, dailyWordsRequest }) {
+function Main({ dailyWordsList, dailyWordsRequest, isLoggedIn }) {
   useEffect(() => {
     // 렌더링
     dailyWordsRequest();
@@ -34,6 +34,7 @@ function Main({ dailyWordsList, dailyWordsRequest }) {
         <Grid container spacing={3}>
           <Grid item xs={8}>
             <MainWordOfTheDay
+              isLoggedIn={isLoggedIn}
               dailyWordsList={dailyWordsList}
             ></MainWordOfTheDay>
           </Grid>
@@ -52,6 +53,7 @@ const mapStateToProps = (state) => {
   return {
     // userID: state.authentication.status.currentUser,
     dailyWordsList: state.dailyWords.status.dailyWordsList,
+    isLoggedIn: state.authentication.status.isLoggedIn,
   };
 };
 
