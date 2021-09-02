@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { } from "../redux";
 
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router";
+
 import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
@@ -71,7 +73,7 @@ export default function ThemeWord() {
                     test.map((item, index) => (
                         <Grid item xs={12} key={index} className={classes.bottom}>
                             <h3></h3>
-                            <button className={classes.test}>
+                            <button href="/Login" className={classes.test}>
                                 더 알아보기
                             </button>
                         </Grid>
