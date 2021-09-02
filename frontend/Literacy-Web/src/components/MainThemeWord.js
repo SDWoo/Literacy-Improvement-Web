@@ -42,17 +42,22 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ThemeWord() {
+export default function ThemeWord({ wordStatus, oneWordRequest }) {
     useEffect(() => {
         // 렌더링
     }, []);
-
     let test = [1, 2, 3, 4, 5];
-    // const handleClick = (e) => {
-    //     e.
-    // }
-    const classes = useStyles();
-    // 사용자에게 보여지는 부분
+    let word = "";
+        // const handleClick = (e) => {
+        //     e.
+        // }
+        const classes = useStyles();
+        // 사용자에게 보여지는 부분
+    
+    handleClick(() => {
+        oneWordRequest(word);
+    })
+    
     return (
         <div className={classes.root}>
             <Grid container spacing={1}>

@@ -4,7 +4,7 @@ const initialState = {
     status: {
         valid: false,
         loading: false,
-        WordStatus: [],
+        wordStatus: [],
     },
 };
 
@@ -25,7 +25,7 @@ export default function oneWord(state = initialState, action) {
                     ...state.status,
                     loading: false,
                     valid: true,
-                    WordStatus: action.oneWord,
+                    wordStatus: action.oneWord,
                 },
             };
         case types.ONE_WORD_REQUEST_FAILURE:

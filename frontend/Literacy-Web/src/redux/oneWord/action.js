@@ -6,11 +6,15 @@ import {
 } from "./types"
 
 
-export function oneWordRequest() {
+export function oneWordRequest(word) {
     return (dispatch) => {
         dispatch(oneWordRequestStatus());
         return axios
-          .get("http://localhost:8080/oneWord")
+          .get("http://localhost:8080/oneWord"), {
+            params: {
+              word: word
+            }
+          }
           .then((response) => {
             dispatch(oneWordRequestSuccess(response.data));
           })
