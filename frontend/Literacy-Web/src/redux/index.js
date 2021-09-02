@@ -2,6 +2,7 @@
 
 export { dailyWordsRequest } from "./dailyWords/actions";
 export { checkUserRequest, logoutRequest } from "./authentication/actions";
+export { oneWordRequest } from "./oneWord/actions";
 // export {
 //   getMainSearch,
 // } from "./mainGetvotes/actions";

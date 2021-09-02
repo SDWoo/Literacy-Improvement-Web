@@ -5,6 +5,7 @@ import SignUp from "./components/signup/SignUp";
 import Login from "./components/login/Login";
 import Main from "./page/Main";
 import TopBar from "./components/TopBar";
+import Word from "./page/Word";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/Home" component={Main} />
           <Route path="/Login" component={Login} />
           <Route path="/SignUp" component={SignUp} />
+          <Route path="/Word" component={Word}/>
         </Switch>
       </div>
     </BrowserRouter>
