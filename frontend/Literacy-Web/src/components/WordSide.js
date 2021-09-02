@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
     },
     felx: {
-
+        display: 'flex',
     },
 }));
 

@@ -28,7 +28,7 @@ export default function MainWordMeaning() {
           </div>
         </Grid>
         <Grid item xs={6}>
-          <div className="inputs">
+          <div className="input">
             test
           </div>
         </Grid>
