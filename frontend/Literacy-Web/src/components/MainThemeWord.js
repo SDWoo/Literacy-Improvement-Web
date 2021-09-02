@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ThemeWord() {
+export default function ThemeWord({ wordStatus, oneWordRequest }) {
     useEffect(() => {
         // 렌더링
 
@@ -59,10 +59,11 @@ export default function ThemeWord() {
     let thisPath = history.location.pathname;
 
     let test = [1, 2, 3, 4, 5];
-    // const handleClick = (e) => {
-    //     e.
-    // }
+    let word = "";
 
+    handleClick(() => {
+        oneWordRequest(word);
+    })
     // 사용자에게 보여지는 부분
     return (
         <div className={classes.root}>
