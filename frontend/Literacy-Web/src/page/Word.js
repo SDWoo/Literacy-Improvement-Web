@@ -28,8 +28,6 @@ export default function Word() {
     // 사용자에게 보여지는 부분
     return (
         <div>
-            <TopBar>
-            </TopBar>
             <div className={classes.root}>
                 <Grid container spacing={3}>
                     <Grid item xs={9}>

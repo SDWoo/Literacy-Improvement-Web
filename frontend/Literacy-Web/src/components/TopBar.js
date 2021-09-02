@@ -10,7 +10,6 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Divider from "@material-ui/core/Divider";
 
 // 색 적용은 나중에 해보기
 // import { createTheme } from '@material-ui/core/styles';
@@ -68,7 +67,16 @@ function TopBar({ userStatus, checkUserRequest }) {
       </Button>
     </div>
   );
-  const logoutButton = <Button color="inherit">로그아웃</Button>;
+  const logoutButton = (
+    <div>
+      <Button color="inherit">
+        로그아웃
+      </Button>;
+      <IconButton href="/Mypage" color="inherit">
+        MyPage
+      </IconButton>;
+    </div>
+  )
   // 사용자에게 보여지는 부분
   return (
     <div className={classes.root}>
@@ -81,10 +89,12 @@ function TopBar({ userStatus, checkUserRequest }) {
             aria-label="menu"
           >
             <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Kotudy
-          </Typography>
+          </IconButton >
+          <Button href="/Home" color="inherit" className={classes.title}>
+            <Typography variant="h6" className={classes.title}>
+              Kotudy
+            </Typography>
+          </Button>
           {userStatus.isLoggedIn ? logoutButton : loginButton}
         </Toolbar>
       </AppBar>
