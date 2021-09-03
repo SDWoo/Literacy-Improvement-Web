@@ -61,9 +61,9 @@ export default function ThemeWord({ wordStatus, oneWordRequest }) {
     let test = [1, 2, 3, 4, 5];
     let word = "";
 
-    handleClick(() => {
+    const handleClick = () => {
         oneWordRequest(word);
-    })
+    }
     // 사용자에게 보여지는 부분
     return (
         <div className={classes.root}>
