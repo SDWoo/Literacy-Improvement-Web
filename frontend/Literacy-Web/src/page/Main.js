@@ -27,6 +27,12 @@ function Main({ dailyWordsList, wordStatus, dailyWordsRequest }) {
 
   console.log(dailyWordsList);
 
+  handleOneWord = (word) => {
+    dailyWordsRequest(word);
+    console.log(word);
+    console.log(wordStatus);
+  }
+
   // 사용자에게 보여지는 부분
   return (
     <div>
@@ -35,19 +41,15 @@ function Main({ dailyWordsList, wordStatus, dailyWordsRequest }) {
           <Grid item xs={8}>
             <MainWordOfTheDay
              dailyWordsList={dailyWordsList}
-             oneWordRequest={oneWordRequest}
-             wordStatus={wordStatus}
              ></MainWordOfTheDay>
           </Grid>
           <Grid item xs={4}>
             <MainThemeWord
-            oneWordRequest={oneWordRequest}
-            wordStatus={wordStatus}
             ></MainThemeWord>
           </Grid>
           <Grid item xs={12}>
             <MainWordMeaning
-            oneWordRequest={oneWordRequest}
+            handleOneWord={handleOneWord}
             wordStatus={wordStatus}
             ></MainWordMeaning>
           </Grid>

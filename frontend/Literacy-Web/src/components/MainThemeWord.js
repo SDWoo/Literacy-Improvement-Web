@@ -54,10 +54,6 @@ export default function ThemeWord({ wordStatus, oneWordRequest }) {
         const classes = useStyles();
         // 사용자에게 보여지는 부분
     
-    handleClick(() => {
-        oneWordRequest(word);
-    })
-    
     return (
         <div className={classes.root}>
             <Grid container spacing={1}>
