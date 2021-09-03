@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import MainWordOfTheDay from "../components/MainWordOfTheDay";
 import MainThemeWord from "../components/MainThemeWord";
-import MainWordMeaning from "../components/MainWordMeaning";
+import MainWordMeaning from "../components/WordMeaning/MainWordMeaning";
 import { dailyWordsRequest, oneWordRequest } from "../redux";
 
 import { makeStyles } from "@material-ui/core/styles";
