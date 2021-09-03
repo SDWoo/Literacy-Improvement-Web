@@ -6,7 +6,8 @@ import TopBar from "../components/TopBar";
 import MainWordOfTheDay from "../components/MainWordOfTheDay";
 import MainThemeWord from "../components/MainThemeWord";
 import MainWordMeaning from "../components/MainWordMeaning";
-import { dailyWordsRequest } from "../redux";
+import SentenceParaphrase from "../components/SentenceParaphrase";
+import { dailyWordsRequest, paraphraseCheckRequest } from "../redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -17,7 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Main({ dailyWordsList, dailyWordsRequest, isLoggedIn }) {
+function Main({
+  dailyWordsList,
+  dailyWordsRequest,
+  isLoggedIn,
+  paraphraseCheckRequest,
+  paraphraseResult,
+}) {
   useEffect(() => {
     // 렌더링
     dailyWordsRequest();
@@ -39,6 +46,10 @@ function Main({ dailyWordsList, dailyWordsRequest, isLoggedIn }) {
             ></MainWordOfTheDay>
           </Grid>
           <Grid item xs={4}>
+            <SentenceParaphrase
+              paraphraseResult={paraphraseResult}
+              paraphraseCheckRequest={paraphraseCheckRequest}
+            ></SentenceParaphrase>
             <MainThemeWord></MainThemeWord>
           </Grid>
           <Grid item xs={12}>
@@ -54,6 +65,7 @@ const mapStateToProps = (state) => {
     // userID: state.authentication.status.currentUser,
     dailyWordsList: state.dailyWords.status.dailyWordsList,
     isLoggedIn: state.authentication.status.isLoggedIn,
+    paraphraseResult: state.paraphrase.status.result,
   };
 };
 
@@ -61,6 +73,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     dailyWordsRequest: () => {
       return dispatch(dailyWordsRequest());
+    },
+    paraphraseCheckRequest: (body) => {
+      return dispatch(paraphraseCheckRequest(body));
     },
   };
 };
