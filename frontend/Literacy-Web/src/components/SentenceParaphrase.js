@@ -70,20 +70,20 @@ export default function SentenceParaphrase({
 
   const checkParaphrase = (e) => {
     let body = {
-      argument: {
-        sentence1: exampleSentence,
-        sentence2: userSentence,
-      },
+      sentence1: exampleSentence,
+      sentence2: userSentence,
     };
     paraphraseCheckRequest(body).then((success) => {
       if (!success) {
         toastCheckParaphraseFailure();
+        return false;
       } else {
         if (paraphraseResult === "paraphrase") {
           toastCheckParaphrase();
         } else {
           toastCheckNonParaphrase();
         }
+        return true;
       }
     });
   };
@@ -114,6 +114,18 @@ export default function SentenceParaphrase({
           확인하기
         </Button>
       </Grid>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Flip}
+      />
     </div>
   );
 }

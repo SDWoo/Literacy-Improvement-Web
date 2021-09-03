@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
-import TopBar from "../components/TopBar";
 import MainWordOfTheDay from "../components/MainWordOfTheDay";
 import MainThemeWord from "../components/MainThemeWord";
 import MainWordMeaning from "../components/MainWordMeaning";
