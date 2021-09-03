@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import TopBar from "../components/TopBar";
 import MainWordOfTheDay from "../components/MainWordOfTheDay";
 import MainThemeWord from "../components/MainThemeWord";
-import MainWordMeaning from "../components/MainWordMeaning";
+import MainWordMeaning from "../components/WordMeaning/MainWordMeaning";
 import { dailyWordsRequest, oneWordRequest } from "../redux";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Main({ dailyWordsList, wordStatus, dailyWordsRequest }) {
+function Main({ dailyWordsList, wordStatus, dailyWordsRequest, oneWordRequest }) {
   useEffect(() => {
     // 렌더링
     dailyWordsRequest();
@@ -27,8 +27,8 @@ function Main({ dailyWordsList, wordStatus, dailyWordsRequest }) {
 
   console.log(dailyWordsList);
 
-  handleOneWord = (word) => {
-    dailyWordsRequest(word);
+  const handleOneWord = (word) => {
+    oneWordRequest(word);
     console.log(word);
     console.log(wordStatus);
   }

@@ -12,7 +12,7 @@ export default function oneWord(state = initialState, action) {
     switch (action.type) {
         case types.ONE_WORD_REQUEST:
             return {
-                ...status,
+                ...state,
                 status: {
                     ...state.status,
                     loading: true,
@@ -20,7 +20,7 @@ export default function oneWord(state = initialState, action) {
             };
         case types.ONE_WORD_REQUEST_SUCCESS:
             return {
-                ...status,
+                ...state,
                 status: {
                     ...state.status,
                     loading: false,
@@ -30,12 +30,14 @@ export default function oneWord(state = initialState, action) {
             };
         case types.ONE_WORD_REQUEST_FAILURE:
             return {
-                ...status,
+                ...state,
                 status: {
                     ...state.status,
                     valid: false,
                     loading: false,
                 }
-            }
+            };
+        default:
+            return state;
     }
 }
