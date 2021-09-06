@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
+import TopBar from "../components/TopBar";
 import MainWordOfTheDay from "../components/MainWordOfTheDay";
 import MainThemeWord from "../components/MainThemeWord";
 import MainWordMeaning from "../components/WordMeaning/MainWordMeaning";
@@ -15,17 +17,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Main({ dailyWordsList, wordStatus, dailyWordsRequest }) {
+function Main({ dailyWordsList, wordStatus, dailyWordsRequest, oneWordRequest }) {
   useEffect(() => {
     // 렌더링
     dailyWordsRequest();
-
   }, []);
 
-  const test = () => { };
   const classes = useStyles();
 
   console.log(dailyWordsList);
+
+  const handleOneWord = (word) => {
+    oneWordRequest(word);
+    console.log(word);
+  }
 
   // 사용자에게 보여지는 부분
   return (
@@ -35,18 +40,15 @@ function Main({ dailyWordsList, wordStatus, dailyWordsRequest }) {
           <Grid item xs={8}>
             <MainWordOfTheDay
               dailyWordsList={dailyWordsList}
-              oneWordRequest={oneWordRequest}
             ></MainWordOfTheDay>
           </Grid>
           <Grid item xs={4}>
             <MainThemeWord
-              oneWordRequest={oneWordRequest}
-              wordStatus={wordStatus}
             ></MainThemeWord>
           </Grid>
           <Grid item xs={12}>
             <MainWordMeaning
-              oneWordRequest={oneWordRequest}
+              handleOneWord={handleOneWord}
               wordStatus={wordStatus}
             ></MainWordMeaning>
           </Grid>
