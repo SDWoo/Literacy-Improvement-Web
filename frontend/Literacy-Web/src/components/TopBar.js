@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TopBar({ userStatus, checkUserRequest }) {
+function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
   useEffect(() => {
     // 렌더링
     checkUserRequest();
@@ -57,6 +57,10 @@ function TopBar({ userStatus, checkUserRequest }) {
   let thisPath = history.location.pathname;
   const classes = useStyles();
 
+  const onLogout = (e) => {
+    logoutRequest().then(() => {});
+  };
+
   const loginButton = (
     <div>
       <Button href="/Login" color="inherit">
@@ -69,14 +73,14 @@ function TopBar({ userStatus, checkUserRequest }) {
   );
   const logoutButton = (
     <div>
-      <Button color="inherit">
-        로그아웃
-      </Button>;
+      <Button color="inherit">로그아웃</Button>;
       <IconButton href="/Mypage" color="inherit">
         MyPage
-      </IconButton>;
+      </IconButton>
+      ;
     </div>
-  )
+  );
+
   // 사용자에게 보여지는 부분
   return (
     <div className={classes.root}>
@@ -89,7 +93,7 @@ function TopBar({ userStatus, checkUserRequest }) {
             aria-label="menu"
           >
             <MenuIcon />
-          </IconButton >
+          </IconButton>
           <Button href="/Home" color="inherit" className={classes.title}>
             <Typography variant="h6" className={classes.title}>
               Kotudy

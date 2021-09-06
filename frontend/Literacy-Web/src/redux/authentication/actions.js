@@ -20,8 +20,6 @@ export function loginRequest(userId, userPassword) {
       userPassword: userPassword,
     };
 
-    console.log(body);
-
     // API REQUEST
     return axios
       .post("http://localhost:8080/login", body)

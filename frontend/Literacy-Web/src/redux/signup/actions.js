@@ -7,8 +7,6 @@ export function registerRequest(body) {
     // Inform Register API is starting
     dispatch(register());
 
-    console.log(body);
-
     return axios
       .post("http://localhost:8080/register", body)
       .then((response) => {

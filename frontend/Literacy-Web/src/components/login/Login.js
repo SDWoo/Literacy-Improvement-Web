@@ -19,7 +19,7 @@ class Login extends Component {
         console.log(document.cookie);
 
         // 로그인 성공시 루트 화면으로 돌아감.
-        this.props.history.push("/");
+
         return true;
       } else {
         console.log("login-cookie-fail");
