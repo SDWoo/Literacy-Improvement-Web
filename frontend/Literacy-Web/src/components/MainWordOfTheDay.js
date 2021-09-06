@@ -67,6 +67,13 @@ export default function MainWordOfTheDay({ dailyWordsList, isLoggedIn }) {
       <h4>{word.mean}</h4>
     </Grid>
   ));
+  // const secondPageWords = (
+  //   <Grid item xs={12} className={classes.paper}>
+  //     <h4>단어</h4>
+  //     <h5>형태소</h5>
+  //     <h4>뜻</h4>
+  //   </Grid>
+  // );
 
   const handleNextDailyWords = (e) => {
     if (dailyWordPage === "1") {
@@ -117,7 +124,7 @@ export default function MainWordOfTheDay({ dailyWordsList, isLoggedIn }) {
           <h3 />
           <button>더 알아보기</button>
         </Grid>
-        {isLoggedIn ? dailyWord : requestLogin}
+        {isLoggedIn ? dailyWord : dailyWord}
       </Grid>
     </div>
   );

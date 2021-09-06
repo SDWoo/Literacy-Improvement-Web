@@ -4,7 +4,7 @@ const initialState = {
   status: {
     valid: false,
     loading: false,
-    result: [],
+    result: "INIT",
   },
 };
 

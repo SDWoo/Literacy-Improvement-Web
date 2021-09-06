@@ -9,7 +9,6 @@ import {
 /* GET Main */
 export function paraphraseCheckRequest(body) {
   return (dispatch) => {
-    console.log(body);
     dispatch(paraphraseCheck());
     return axios
       .post("http://localhost:8080/paraphraseCheck", body)

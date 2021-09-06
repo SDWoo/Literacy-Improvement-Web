@@ -64,8 +64,9 @@ export default function SentenceParaphrase({
   let exampleSentence =
     "성탄 전야 미사를 집전하며 프란치스코 교황이 전한 메시지는 '어린이를 향한 관심'입니다.";
 
-  const toastCheckParaphrase = () => toast("의미가 같습니다.");
-  const toastCheckNonParaphrase = () => toast.error("의미가 다릅니다.");
+  const toastCheckParaphrase = () => toast("같은 의미입니다!");
+  const toastCheckNonParaphrase = () =>
+    toast.error("다른 의미입니다. 다시 입력해 주세요.");
   const toastCheckParaphraseFailure = () => toast.error("확인 실패했습니다.");
 
   const checkParaphrase = (e) => {
@@ -73,6 +74,7 @@ export default function SentenceParaphrase({
       sentence1: exampleSentence,
       sentence2: userSentence,
     };
+
     paraphraseCheckRequest(body).then((success) => {
       if (!success) {
         toastCheckParaphraseFailure();
@@ -87,6 +89,16 @@ export default function SentenceParaphrase({
       }
     });
   };
+
+  // const checkResultParaphrase = <div style="color: #0A0">같은 의미입니다!</div>;
+  // const checkResultNonParaphrase = (
+  //   <div style="color: #0A0">다른 의미입니다. 다시 입력해 주세요.</div>
+  // );
+  // const checkResult =
+  //   paraphraseResult === "paraphrase"
+  //     ? checkResultParaphrase
+  //     : checkResultNonParaphrase;
+
   // 사용자에게 보여지는 부분
   return (
     <div className={classes.root}>
