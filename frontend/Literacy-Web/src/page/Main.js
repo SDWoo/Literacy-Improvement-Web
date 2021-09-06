@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import MainWordOfTheDay from "../components/MainWordOfTheDay";
-import MainThemeWord from "../components/MainThemeWord";
 import MainWordMeaning from "../components/WordMeaning/MainWordMeaning";
 import {
   dailyWordsRequest,
@@ -29,6 +27,7 @@ function Main({
   isLoggedIn,
   paraphraseCheckRequest,
   paraphraseResult,
+  paraphraseCheckValid,
 }) {
   useEffect(() => {
     // 렌더링
@@ -42,6 +41,16 @@ function Main({
   const handleOneWord = (word) => {
     oneWordRequest(word);
     console.log(word);
+  };
+
+  const onClickCheckParaphrase = (body) => {
+    paraphraseCheckRequest(body).then(() => {
+      if (paraphraseCheckValid === true) {
+        return true;
+      } else {
+        return false;
+      }
+    });
   };
 
   // 사용자에게 보여지는 부분
@@ -58,7 +67,7 @@ function Main({
           <Grid item xs={4}>
             <SentenceParaphrase
               paraphraseResult={paraphraseResult}
-              paraphraseCheckRequest={paraphraseCheckRequest}
+              onClickCheckParaphrase={onClickCheckParaphrase}
             ></SentenceParaphrase>
           </Grid>
           <Grid item xs={12}>
@@ -79,6 +88,7 @@ const mapStateToProps = (state) => {
     isLoggedIn: state.authentication.status.isLoggedIn,
     paraphraseResult: state.paraphrase.status.result,
     wordStatus: state.oneWord.status.wordStatus,
+    paraphraseCheckValid: state.paraphrase.status.valid,
   };
 };
 

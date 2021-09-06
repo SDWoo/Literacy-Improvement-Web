@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import {} from "../redux";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,27 +52,53 @@ export default function MainWordOfTheDay({ dailyWordsList, isLoggedIn }) {
   firstPageWordsList = dailyWordsList.slice(0, 5);
   secondPageWordsList = dailyWordsList.slice(5, 11);
 
+  const onClickOneWord = (word) => {
+    window.location.replace(`/Word/${word}`);
+  };
+
   const firstPageWords = firstPageWordsList.map((word, index) => (
-    <Grid item xs={12} className={classes.paper}>
-      <h4>{word.word}</h4>
-      <h5>{word.morpheme}</h5>
-      <h4>{word.mean}</h4>
-    </Grid>
+    <Button fullWidth onClick={onClickOneWord(word.word)}>
+      <Grid item xs={12} className={classes.paper}>
+        <Grid item xs={3}>
+          <Typography variant="h6" gutterBottom color="textPrimary">
+            {word.word}
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <Typography variant="subtitle2" gutterBottom>
+            {word.morpheme}
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="body2" gutterBottom color="textPrimary">
+            {word.mean}
+          </Typography>
+        </Grid>
+      </Grid>
+    </Button>
   ));
+
   const secondPageWords = secondPageWordsList.map((word, index) => (
-    <Grid item xs={12} className={classes.paper}>
-      <h4>{word.word}</h4>
-      <h5>{word.morpheme}</h5>
-      <h4>{word.mean}</h4>
-    </Grid>
+    <Button fullWidth onClick={onClickOneWord(word.word)}>
+      <Grid item xs={12} className={classes.paper}>
+        <Grid item xs={3}>
+          <Typography variant="h6" gutterBottom color="textPrimary">
+            {word.word}
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <Typography variant="subtitle2" gutterBottom>
+            {word.morpheme}
+          </Typography>
+        </Grid>
+        <Grid item xs={6}>
+          <Typography variant="body2" gutterBottom color="textPrimary">
+            {word.mean}
+          </Typography>
+        </Grid>
+      </Grid>
+    </Button>
   ));
-  // const secondPageWords = (
-  //   <Grid item xs={12} className={classes.paper}>
-  //     <h4>단어</h4>
-  //     <h5>형태소</h5>
-  //     <h4>뜻</h4>
-  //   </Grid>
-  // );
 
   const handleNextDailyWords = (e) => {
     if (dailyWordPage === "1") {
@@ -107,24 +132,32 @@ export default function MainWordOfTheDay({ dailyWordsList, isLoggedIn }) {
     </>
   );
   const requestLogin = (
-    <Button color="primary" onClick={gotoLogin} variant="contained">
-      로그인 후 이용해 주세요.
-    </Button>
+    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Button color="primary" onClick={gotoLogin} variant="contained">
+        로그인 후 이용해 주세요.
+      </Button>
+    </Grid>
   );
 
   // 사용자에게 보여지는 부분
   return (
     <div className={classes.root}>
-      <Grid container spacing={0.5}>
-        <Grid item xs={3}>
+      <Grid
+        container
+        spacing={1}
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item xs={12}>
           <h3>오늘의 단어</h3>
         </Grid>
-        <Grid item xs={7}></Grid>
-        <Grid item xs={2} className={classes.button}>
-          <h3 />
-          <button>더 알아보기</button>
-        </Grid>
-        {isLoggedIn ? dailyWord : dailyWord}
+        {isLoggedIn ? dailyWord : requestLogin}
       </Grid>
     </div>
   );

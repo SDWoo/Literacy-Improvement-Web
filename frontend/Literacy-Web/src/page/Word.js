@@ -1,8 +1,4 @@
 import React, { useEffect } from "react";
-import TopBar from "../components/TopBar";
-import WordDefinition from "../components/WordDefinition";
-import WordExample from "../components/WordExample";
-import WordSide from "../components/WordSide";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { oneWordRequest } from "../redux";
@@ -20,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 function Word({ wordStatus, oneWordRequest }) {
   useEffect(() => {
+    oneWordRequest(keyword);
     // 렌더링
   }, []);
   let wordName = [];
@@ -36,7 +33,7 @@ function Word({ wordStatus, oneWordRequest }) {
       }
     </div>
   ));
-  const { word } = useParams();
+  const { keyword } = useParams();
   const classes = useStyles();
   // 사용자에게 보여지는 부분
   return (
@@ -69,7 +66,6 @@ function Word({ wordStatus, oneWordRequest }) {
 }
 const mapStateToProps = (state) => {
   return {
-    // userID: state.authentication.status.currentUser,
     wordStatus: state.oneWord.status.wordStatus,
   };
 };

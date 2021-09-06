@@ -17,7 +17,6 @@ function App() {
           <Route path="/Home" component={Main} />
           <Route path="/Login" component={Login} />
           <Route path="/SignUp" component={SignUp} />
-          <Route path="/Word" component={Word} />
           <Route path="/MyPage" component={MyPage} />
           <Route path="/Word/:word" component={Word} />
         </Switch>

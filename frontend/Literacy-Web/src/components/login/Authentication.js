@@ -84,7 +84,7 @@ class Authentication extends Component {
         });
       } else {
         this.toastCheckInfo_Complete();
-        window.location.replace("/");
+        window.location.replace("/Home");
       }
     });
   };
@@ -103,12 +103,27 @@ class Authentication extends Component {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={useStyles.paper}>
-          <Avatar className={useStyles.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            LOGIN
-          </Typography>
+          <Grid space={1} xs={12}></Grid>
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Avatar className={useStyles.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+          </Grid>
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Typography component="h1" variant="h5">
+              LOGIN
+            </Typography>
+          </Grid>
           <form className={useStyles.form} noValidate>
             <TextField
               variant="outlined"

@@ -11,7 +11,7 @@ class SignUp extends Component {
       console.log(this.props.history);
       if (this.props.statusReg === "SUCCESS") {
         // 회원가입 성공시 로그인 화면으로 돌아감.
-        this.props.history.push("/SignIn");
+        this.props.history.push("/Login");
         return true;
       } else {
         console.log("회원가입 실패");

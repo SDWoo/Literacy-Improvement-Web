@@ -137,15 +137,22 @@ class AuthSignUp extends Component {
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={useStyles.paper}>
-            <Avatar className={useStyles.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              KOTUDY
-            </Typography>
-            <Typography component="subtitle2" variant="subtitle2">
-              문해력 향상 프로젝트
-            </Typography>
+            <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Avatar className={useStyles.avatar}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                KOTUDY
+              </Typography>
+              <Typography component="subtitle2" variant="subtitle2">
+                문해력 향상 프로젝트
+              </Typography>
+            </Grid>
             <form className={useStyles.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -242,8 +249,8 @@ class AuthSignUp extends Component {
               </Button>
               <Grid container justify="flex-end">
                 <Grid item>
-                  <Link href="/SignIn" variant="body2">
-                    Already have an account? Sign in
+                  <Link href="/Login" variant="body2">
+                    계정이 있다면? 로그인하러 가기
                   </Link>
                 </Grid>
               </Grid>

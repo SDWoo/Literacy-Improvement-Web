@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { Typography } from "@material-ui/core";
 
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -48,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SentenceParaphrase({
   paraphraseResult,
-  paraphraseCheckRequest,
+  onClickCheckParaphrase,
 }) {
   useEffect(() => {
     // 렌더링
@@ -75,7 +76,7 @@ export default function SentenceParaphrase({
       sentence2: userSentence,
     };
 
-    paraphraseCheckRequest(body).then((success) => {
+    onClickCheckParaphrase(body).then((success) => {
       if (!success) {
         toastCheckParaphraseFailure();
         return false;
@@ -102,14 +103,15 @@ export default function SentenceParaphrase({
   // 사용자에게 보여지는 부분
   return (
     <div className={classes.root}>
-      <Grid container spacing={1}>
-        <Grid item xs={5}>
-          <h3>문장 스터디</h3>
-        </Grid>
-        <Grid item xs={2}></Grid>
-        <Grid item xs={5}>
-          <h3 />
-          <button className={classes.test}>더 알아보기</button>
+      <Grid
+        container
+        spacing={2}
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid item xs={12}>
+          <h3>바꿔쓰기(Paraphrasing)</h3>
         </Grid>
         <h5>{exampleSentence}</h5>
         <TextField
@@ -122,9 +124,11 @@ export default function SentenceParaphrase({
           value={userSentence}
           onChange={handleChange}
         />
-        <Button color="primary" onClick={checkParaphrase} variant="contained">
-          확인하기
-        </Button>
+        <Grid item>
+          <Button color="primary" onClick={checkParaphrase} variant="contained">
+            확인하기
+          </Button>
+        </Grid>
       </Grid>
       <ToastContainer
         position="top-center"

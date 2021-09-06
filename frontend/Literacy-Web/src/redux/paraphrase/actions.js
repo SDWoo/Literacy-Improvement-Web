@@ -13,7 +13,7 @@ export function paraphraseCheckRequest(body) {
     return axios
       .post("http://localhost:8080/paraphraseCheck", body)
       .then((response) => {
-        dispatch(paraphraseCheckSuccess(response.data));
+        dispatch(paraphraseCheckSuccess(response.data.return_object.result));
       })
       .catch((error) => {
         dispatch(paraphraseCheckFailure());
