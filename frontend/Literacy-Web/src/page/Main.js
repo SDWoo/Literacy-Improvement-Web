@@ -47,10 +47,6 @@ function Main({
     console.log(search);
     morphemeCheckRequest(body);
   }
-  const handleOneWord = (search) => {
-    console.log(search);
-    oneWordRequest(search);
-  }
 
   // 사용자에게 보여지는 부분
   return (
@@ -71,7 +67,6 @@ function Main({
           </Grid>
           <Grid item xs={12}>
             <MainWordMeaning
-              oneWordRequest={handleOneWord}
               wordStatus={wordStatus}
               handleMorpheme={handleMorpheme}
               item={item}

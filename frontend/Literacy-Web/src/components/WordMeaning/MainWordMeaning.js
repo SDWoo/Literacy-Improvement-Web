@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { morphemeCheckRequest } from '../../redux';
 
 export default function MainWordMeaning({
-  handleOneWord,
   wordStatus,
   handleMorpheme,
   item,
@@ -28,11 +27,6 @@ export default function MainWordMeaning({
     // console.log(search)
     setChecked(true);
   }
-  const searchOneWord = () => {
-    handleOneWord(searchBox);
-    setChecked(true);
-  }
-
   let wordName = [];
   const itemLoad = (
     wordStatus.map((item, index) => (
@@ -85,12 +79,9 @@ export default function MainWordMeaning({
   const searchSuccess = (
     morpheme.pos.map((item, index) => (
       <div key={index}>
-        <h1 style={{ margineft: 10 }}>[{morpheme.pos}] {morpheme.name[index]}</h1>
-        <Link to={`/Word/${searchBox}`}>
-          <button
-
-            onClick={searchOneWord}
-          >
+        <h1 style={{ margineft: 10 }}>[{morpheme.pos[index]}] {morpheme.name[index]}</h1>
+        <Link to={`/Word/${morpheme.name[index]}`}>
+          <button>
             더 알아보기
           </button>
         </Link>
