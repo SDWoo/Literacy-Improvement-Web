@@ -18,7 +18,7 @@ function App() {
           <Route path="/Login" component={Login} />
           <Route path="/SignUp" component={SignUp} />
           <Route path="/MyPage" component={MyPage} />
-          <Route path="/Word/:word" component={Word} />
+          <Route path="/Word/:keyword" component={Word} />
         </Switch>
       </div>
     </BrowserRouter>

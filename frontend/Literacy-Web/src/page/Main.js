@@ -7,6 +7,7 @@ import {
   dailyWordsRequest,
   oneWordRequest,
   paraphraseCheckRequest,
+  morphemeCheckRequest,
 } from "../redux";
 import SentenceParaphrase from "../components/SentenceParaphrase";
 
@@ -31,6 +32,8 @@ function Main({
   paraphraseCheckRequest,
   paraphraseResult,
   paraphraseCheckValid,
+  morphemeCheckRequest,
+  item,
 }) {
   useEffect(() => {
     // 렌더링
@@ -42,9 +45,18 @@ function Main({
     (state) => state.paraphrase.status.result
   );
 
-  const handleOneWord = (word) => {
-    oneWordRequest(word);
-    console.log(word);
+  // const handleOneWord = (word) => {
+  //   oneWordRequest(word);
+  //   console.log(word);
+  // };
+
+  const handleMorpheme = (search) => {
+    let body = {
+      analysisCode: "ner",
+      text: search,
+    };
+    console.log(search);
+    morphemeCheckRequest(body);
   };
 
   const toastCheckParaphrase = () => toast("같은 의미입니다!");
@@ -81,8 +93,8 @@ function Main({
           </Grid>
           <Grid item xs={12}>
             <MainWordMeaning
-              handleOneWord={handleOneWord}
-              wordStatus={wordStatus}
+              handleMorpheme={handleMorpheme}
+              item={item}
             ></MainWordMeaning>
           </Grid>
         </Grid>
@@ -109,6 +121,7 @@ const mapStateToProps = (state) => {
     paraphraseResult: state.paraphrase.status.result,
     wordStatus: state.oneWord.status.wordStatus,
     paraphraseCheckValid: state.paraphrase.status.valid,
+    item: state.morpheme.status.item,
   };
 };
 
@@ -122,6 +135,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     paraphraseCheckRequest: (body) => {
       return dispatch(paraphraseCheckRequest(body));
+    },
+    morphemeCheckRequest: (body) => {
+      return dispatch(morphemeCheckRequest(body));
     },
   };
 };
