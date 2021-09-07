@@ -32,6 +32,8 @@ export default function MainWordMeaning({ handleMorpheme, item }) {
     }
   };
 
+  morphemeLoad();
+
   const searchPage = (
     <div className="inputs">
       <div> 문장 / 단어</div>
