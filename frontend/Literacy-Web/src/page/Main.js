@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import MainWordOfTheDay from "../components/MainWordOfTheDay";
 import MainWordMeaning from "../components/WordMeaning/MainWordMeaning";
@@ -38,6 +38,9 @@ function Main({
   }, []);
 
   const classes = useStyles();
+  const paraphraseCheckResult = useSelector(
+    (state) => state.paraphrase.status.result
+  );
 
   const handleOneWord = (word) => {
     oneWordRequest(word);
@@ -50,21 +53,14 @@ function Main({
   const toastCheckParaphraseFailure = () => toast.error("확인 실패했습니다.");
 
   const onClickCheckParaphrase = (body) => {
-    paraphraseCheckRequest(body).then(() => {
-      if (paraphraseCheckValid === true) {
-        if (paraphraseResult === "paraphrase") {
-          toastCheckParaphrase();
-        } else {
-          toastCheckNonParaphrase();
-        }
-        return true;
-      } else {
-        toastCheckParaphraseFailure();
-        return false;
-      }
-    });
+    paraphraseCheckRequest(body).then(() => {});
   };
 
+  if (paraphraseCheckResult === "paraphrase") {
+    toastCheckParaphrase();
+  } else if (paraphraseCheckResult === "not paraphrase") {
+    toastCheckNonParaphrase();
+  }
   // 사용자에게 보여지는 부분
   return (
     <div>

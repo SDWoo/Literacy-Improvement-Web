@@ -85,9 +85,9 @@ function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
         로그아웃
       </Button>
       |
-      <IconButton href="/Mypage" color="inherit">
+      <Button href="/Mypage" color="inherit">
         MyPage
-      </IconButton>
+      </Button>
     </div>
   );
 

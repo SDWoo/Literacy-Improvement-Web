@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {} from "../redux";
+import { useSelector } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -58,6 +59,9 @@ export default function SentenceParaphrase({
   const classes = useStyles();
 
   const [userSentence, setUserSentence] = useState("");
+  const paraphraseCheckResult = useSelector(
+    (state) => state.paraphrase.status.result
+  );
 
   const handleChange = ({ target }) => {
     setUserSentence(target.value);
@@ -75,7 +79,7 @@ export default function SentenceParaphrase({
     onClickCheckParaphrase(body);
   };
 
-  if (paraphraseResult === "paraphrase") {
+  if (paraphraseCheckResult === "paraphrase") {
     exampleSentence =
       "거짓을 행하는 자는 내 집 안에 거주하지 못하며 거짓말하는 자는 내 목전에 서지 못하리로다.";
   }
