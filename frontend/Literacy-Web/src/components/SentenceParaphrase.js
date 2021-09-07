@@ -48,8 +48,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SentenceParaphrase({
-  paraphraseResult,
   onClickCheckParaphrase,
+  paraphraseCheckValid,
+  paraphraseResult,
 }) {
   useEffect(() => {
     // 렌더링
@@ -65,32 +66,19 @@ export default function SentenceParaphrase({
   let exampleSentence =
     "성탄 전야 미사를 집전하며 프란치스코 교황이 전한 메시지는 '어린이를 향한 관심'입니다.";
 
-  const toastCheckParaphrase = () => toast("같은 의미입니다!");
-  const toastCheckNonParaphrase = () =>
-    toast.error("다른 의미입니다. 다시 입력해 주세요.");
-  const toastCheckParaphraseFailure = () => toast.error("확인 실패했습니다.");
-
   const checkParaphrase = (e) => {
     let body = {
       sentence1: exampleSentence,
       sentence2: userSentence,
     };
 
-    onClickCheckParaphrase(body).then((success) => {
-      if (!success) {
-        toastCheckParaphraseFailure();
-        return false;
-      } else {
-        if (paraphraseResult === "paraphrase") {
-          toastCheckParaphrase();
-        } else {
-          toastCheckNonParaphrase();
-        }
-        return true;
-      }
-    });
+    onClickCheckParaphrase(body);
   };
 
+  if (paraphraseResult === "paraphrase") {
+    exampleSentence =
+      "거짓을 행하는 자는 내 집 안에 거주하지 못하며 거짓말하는 자는 내 목전에 서지 못하리로다.";
+  }
   // const checkResultParaphrase = <div style="color: #0A0">같은 의미입니다!</div>;
   // const checkResultNonParaphrase = (
   //   <div style="color: #0A0">다른 의미입니다. 다시 입력해 주세요.</div>

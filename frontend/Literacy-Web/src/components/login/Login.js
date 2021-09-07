@@ -36,7 +36,6 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     status: state.authentication.login.status,
   };
@@ -45,7 +44,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loginRequest: (id, pw) => {
-      console.log("mapDispatchToProps");
       return dispatch(loginRequest(id, pw));
     },
   };

@@ -11,6 +11,8 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 
+import { ToastContainer, toast, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // 색 적용은 나중에 해보기
 // import { createTheme } from '@material-ui/core/styles';
 
@@ -57,8 +59,13 @@ function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
   let thisPath = history.location.pathname;
   const classes = useStyles();
 
+  const toastOnLogout = () => toast("로그아웃 되었습니다.");
+
   const onLogout = (e) => {
-    logoutRequest().then(() => {});
+    logoutRequest().then(() => {
+      toastOnLogout();
+      window.location.replace("/Home");
+    });
   };
 
   const loginButton = (
@@ -66,6 +73,7 @@ function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
       <Button href="/Login" color="inherit">
         로그인
       </Button>
+      |
       <Button href="/SignUp" color="inherit">
         회원가입
       </Button>
@@ -73,11 +81,13 @@ function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
   );
   const logoutButton = (
     <div>
-      <Button color="inherit">로그아웃</Button>;
+      <Button onClick={onLogout} color="inherit">
+        로그아웃
+      </Button>
+      |
       <IconButton href="/Mypage" color="inherit">
         MyPage
       </IconButton>
-      ;
     </div>
   );
 
@@ -102,6 +112,18 @@ function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
           {userStatus.isLoggedIn ? logoutButton : loginButton}
         </Toolbar>
       </AppBar>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Flip}
+      />
     </div>
   );
 }

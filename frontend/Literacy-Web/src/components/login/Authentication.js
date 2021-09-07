@@ -75,7 +75,6 @@ class Authentication extends Component {
 
     this.props.onLogin(id, pw).then((success) => {
       // 실패하면 비밀번호 재입력 받음
-      console.log("Auth_handleLogin");
       if (!success) {
         console.log(this.props);
         this.toastCheckInfo_Fail();

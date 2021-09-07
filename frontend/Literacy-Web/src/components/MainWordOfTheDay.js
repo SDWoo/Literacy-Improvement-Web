@@ -57,7 +57,7 @@ export default function MainWordOfTheDay({ dailyWordsList, isLoggedIn }) {
   };
 
   const firstPageWords = firstPageWordsList.map((word, index) => (
-    <Button fullWidth onClick={onClickOneWord(word.word)}>
+    <Button fullWidth onClick={() => onClickOneWord(word.word)}>
       <Grid item xs={12} className={classes.paper}>
         <Grid item xs={3}>
           <Typography variant="h6" gutterBottom color="textPrimary">
@@ -79,7 +79,7 @@ export default function MainWordOfTheDay({ dailyWordsList, isLoggedIn }) {
   ));
 
   const secondPageWords = secondPageWordsList.map((word, index) => (
-    <Button fullWidth onClick={onClickOneWord(word.word)}>
+    <Button fullWidth onClick={() => onClickOneWord(word.word)}>
       <Grid item xs={12} className={classes.paper}>
         <Grid item xs={3}>
           <Typography variant="h6" gutterBottom color="textPrimary">

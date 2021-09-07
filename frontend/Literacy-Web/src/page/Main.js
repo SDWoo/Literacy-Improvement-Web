@@ -13,6 +13,9 @@ import SentenceParaphrase from "../components/SentenceParaphrase";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
+import { ToastContainer, toast, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
@@ -36,18 +39,27 @@ function Main({
 
   const classes = useStyles();
 
-  console.log(dailyWordsList);
-
   const handleOneWord = (word) => {
     oneWordRequest(word);
     console.log(word);
   };
 
+  const toastCheckParaphrase = () => toast("같은 의미입니다!");
+  const toastCheckNonParaphrase = () =>
+    toast.error("다른 의미입니다. 다시 입력해 주세요.");
+  const toastCheckParaphraseFailure = () => toast.error("확인 실패했습니다.");
+
   const onClickCheckParaphrase = (body) => {
     paraphraseCheckRequest(body).then(() => {
       if (paraphraseCheckValid === true) {
+        if (paraphraseResult === "paraphrase") {
+          toastCheckParaphrase();
+        } else {
+          toastCheckNonParaphrase();
+        }
         return true;
       } else {
+        toastCheckParaphraseFailure();
         return false;
       }
     });
@@ -66,8 +78,9 @@ function Main({
           </Grid>
           <Grid item xs={4}>
             <SentenceParaphrase
-              paraphraseResult={paraphraseResult}
               onClickCheckParaphrase={onClickCheckParaphrase}
+              paraphraseCheckValid={paraphraseCheckValid}
+              paraphraseResult={paraphraseResult}
             ></SentenceParaphrase>
           </Grid>
           <Grid item xs={12}>
@@ -78,12 +91,23 @@ function Main({
           </Grid>
         </Grid>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Flip}
+      />
     </div>
   );
 }
 const mapStateToProps = (state) => {
   return {
-    // userID: state.authentication.status.currentUser,
     dailyWordsList: state.dailyWords.status.dailyWordsList,
     isLoggedIn: state.authentication.status.isLoggedIn,
     paraphraseResult: state.paraphrase.status.result,
