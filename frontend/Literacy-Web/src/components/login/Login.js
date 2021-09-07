@@ -18,8 +18,6 @@ class Login extends Component {
         console.log("login-cookie : ");
         console.log(document.cookie);
 
-        // 로그인 성공시 루트 화면으로 돌아감.
-        this.props.history.push("/");
         return true;
       } else {
         console.log("login-cookie-fail");
@@ -38,7 +36,6 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     status: state.authentication.login.status,
   };
@@ -47,7 +44,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loginRequest: (id, pw) => {
-      console.log("mapDispatchToProps");
       return dispatch(loginRequest(id, pw));
     },
   };

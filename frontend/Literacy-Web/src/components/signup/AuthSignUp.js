@@ -8,7 +8,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -16,9 +15,6 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormLabel from "@material-ui/core/FormLabel";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -137,15 +133,22 @@ class AuthSignUp extends Component {
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={useStyles.paper}>
-            <Avatar className={useStyles.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              KOTUDY
-            </Typography>
-            <Typography component="subtitle2" variant="subtitle2">
-              문해력 향상 프로젝트
-            </Typography>
+            <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Avatar className={useStyles.avatar}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                KOTUDY
+              </Typography>
+              <Typography component="subtitle2" variant="subtitle2">
+                문해력 향상 프로젝트
+              </Typography>
+            </Grid>
             <form className={useStyles.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -242,8 +245,8 @@ class AuthSignUp extends Component {
               </Button>
               <Grid container justify="flex-end">
                 <Grid item>
-                  <Link href="/SignIn" variant="body2">
-                    Already have an account? Sign in
+                  <Link href="/Login" variant="body2">
+                    계정이 있다면? 로그인하러 가기
                   </Link>
                 </Grid>
               </Grid>

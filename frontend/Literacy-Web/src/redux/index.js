@@ -3,7 +3,6 @@
 export { searchWordsRequest, dictionaryWordsRequest } from "./myPage/actions";
 export { dailyWordsRequest } from "./dailyWords/actions";
 export { checkUserRequest, logoutRequest } from "./authentication/actions";
-
-// export {
-//   getMainSearch,
-// } from "./mainGetvotes/actions";
+export { oneWordRequest } from "./oneWord/actions";
+export { paraphraseCheckRequest } from "./paraphrase/actions";
+export { morphemeCheckRequest } from "./morpheme/actions";
