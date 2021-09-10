@@ -27,22 +27,23 @@ const useStyles = makeStyles((theme) => ({
     // height: '7ch',
     color: theme.palette.text.secondary,
     display: "inline-block",
-    border: "1px solid #D9D9D9",
+    borderBottom: "1px solid #D9D9D9",
+    width: "40%"
   },
   button: {
     float: "left",
     border: "none",
     backgroundColor: "white",
     borderRadius: "5px",
-    width: "5rem",
+    width: "150px",
     height: "2.5rem",
     fontSize: "1.5rem",
     fontWeight: "400",
-    textAlign: "center",
+    textAlign: "left",
   },
   deletebutton: {
     float: "right",
-    border: "1px solid black",
+    border: "none",
     width: "3rem",
     height: "2rem",
     borderRadius: "5px",
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "0.85rem",
     fontWeight: "400",
 
-    backgroundColor: "red",
+    backgroundColor: "#ff575d",
   },
   test: {
     border: "1px solid #D9D9D9",
@@ -76,7 +77,7 @@ export default function MyDictionary({ dictionaryWordsList, handleDelete }) {
   console.log(wordName);
 
   const myWordList = wordName.map((word, index) => (
-    <Grid item key={index} xs={4} className={classes.paper}>
+    <Grid item key={index} xs={12} className={classes.paper}>
       <Link to={`/Word/${wordName[index]}`}>
         <button className={classes.button}>{wordName[index]}</button>
       </Link>
@@ -94,14 +95,14 @@ export default function MyDictionary({ dictionaryWordsList, handleDelete }) {
       <Grid
         container
         spacing={3}
-        irection="row"
+        direction="column"
         justifyContent="center"
-        alignItems="center"
+        alignItems="flex-start"
       >
         <Grid item xs={12}>
-          <Typography variant="h6" color="textPrimary">
+          <h3>
             내 단어장
-          </Typography>
+          </h3>
         </Grid>
         {myWordList}
       </Grid>

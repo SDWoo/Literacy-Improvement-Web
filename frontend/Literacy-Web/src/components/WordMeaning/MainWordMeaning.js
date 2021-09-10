@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import "./MainWordMeaning.css";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
+
+
 
 export default function MainWordMeaning({ handleMorpheme, item }) {
   const [checked, setChecked] = useState(false);
@@ -31,9 +33,7 @@ export default function MainWordMeaning({ handleMorpheme, item }) {
       }
     }
   };
-
   morphemeLoad();
-
   const searchPage = (
     <div className="inputs">
       <div> 문장 / 단어</div>
@@ -45,24 +45,29 @@ export default function MainWordMeaning({ handleMorpheme, item }) {
         autoFocus
         onChange={(e) => handleChange(e)}
       />
-      <button className="search_button" onClick={checkMorpheme}>
+      <Button color="primary" onClick={checkMorpheme}  variant="contained">
         검색
-      </button>
+      </Button>
     </div>
   );
-  const searchSuccess = morpheme.pos.map((item, index) => (
+  const searchSuccess =(
+   morpheme.pos.map((item, index) => (
     <div key={index}>
-      <h1 style={{ margineft: 10 }}>
+      <h2 style={{ margineft: 10 }}>
         [{morpheme.pos[index]}] {morpheme.name[index]}
-      </h1>
+      </h2>
       <Link to={`/Word/${morpheme.name[index]}`}>
-        <button>더 알아보기</button>
+        <Button color="primary"  variant="contained">더 알아보기</Button>
       </Link>
     </div>
-  ));
+  ))
+  );
+
+
+
   return (
     <div className="header">
-      <span className="title"> 이건 무슨 뜻이지? </span>
+      <h3 className="title"> 이건 무슨 뜻이지? </h3>
       <Grid container spacing={3}>
         <Grid item xs={6}>
           {searchPage}
@@ -72,5 +77,6 @@ export default function MainWordMeaning({ handleMorpheme, item }) {
         </Grid>
       </Grid>
     </div>
+    
   );
 }

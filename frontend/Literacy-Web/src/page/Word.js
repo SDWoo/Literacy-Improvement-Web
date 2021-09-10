@@ -5,6 +5,10 @@ import { oneWordRequest, dictionaryWordsRequest } from "../redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import { Button } from "@material-ui/core";
+
+import { ToastContainer, toast, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,9 +43,14 @@ function Word({ wordStatus, oneWordRequest, dictionaryWordsRequest }) {
   ));
   const classes = useStyles();
   const handleClickDictionary = () => {
-    dictionaryWordsRequest(wordName[0]);
+    dictionaryWordsRequest(wordName[0]).then(()=> {
+      toastAddToNoteSuccess()
+    });
     console.log(wordName[0]);
   };
+
+  const toastAddToNoteSuccess = () => toast("단어장에 추가되었습니다!");
+
   // 사용자에게 보여지는 부분
   return (
     <div>
@@ -54,7 +63,7 @@ function Word({ wordStatus, oneWordRequest, dictionaryWordsRequest }) {
           </Grid>
           <Grid item xs={2}></Grid>
           <Grid item xs={7}>
-            <button onClick={handleClickDictionary}>단어장에 추가</button>
+            <Button color="primary" variant="contained" onClick={handleClickDictionary}>나만의 단어장에 추가</Button>
           </Grid>
           {wordName.map((word, index) => (
             <Grid item key={index} xs={12} className={classes.paper}>
@@ -71,6 +80,18 @@ function Word({ wordStatus, oneWordRequest, dictionaryWordsRequest }) {
           ))}
         </Grid>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Flip}
+      />
     </div>
   );
 }

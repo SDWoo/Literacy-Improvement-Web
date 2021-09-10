@@ -42,15 +42,13 @@ function MyPage({
     <div>
       <div className={classes.root}>
         <Grid container spacing={3}>
-          <Grid item xs={9}>
+          <Grid item xs={12}>
             <MyDictionary
               dictionaryWordsList={dictionaryWordsList}
               handleDelete={handleDelete}
             ></MyDictionary>
           </Grid>
-          <Grid item xs={3}>
-            <MySearch searchWordsList={searchWordsList}></MySearch>
-          </Grid>
+         
         </Grid>
       </div>
     </div>
