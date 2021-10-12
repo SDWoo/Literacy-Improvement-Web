@@ -7,6 +7,7 @@ import Main from "./page/Main";
 import TopBar from "./components/TopBar";
 import Word from "./page/Word";
 import MyPage from "./page/MyPage";
+import OAuthRedirectHandler from "./components/login/OAuthRedirectHandler";
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
           <Route path="/SignUp" component={SignUp} />
           <Route path="/MyPage" component={MyPage} />
           <Route path="/Word/:keyword" component={Word} />
+          <Route
+            path="/oauth/callback/kakao"
+            component={OAuthRedirectHandler}
+          />
         </Switch>
       </div>
     </BrowserRouter>

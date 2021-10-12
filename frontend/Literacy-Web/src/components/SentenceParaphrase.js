@@ -92,6 +92,20 @@ export default function SentenceParaphrase({
   //     ? checkResultParaphrase
   //     : checkResultNonParaphrase;
 
+  // hanspell-example.js
+  const hanspell = require("hanspell");
+
+  const sentence = "리랜드는 얼굴 골격이 굵은게,";
+  const end = function () {
+    console.log("// check ends");
+  };
+  const error = function (err) {
+    console.error("// error: " + err);
+  };
+
+  hanspell.spellCheckByDAUM(sentence, 6000, console.log, end, error);
+  hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error);
+
   // 사용자에게 보여지는 부분
   return (
     <div className={classes.root}>

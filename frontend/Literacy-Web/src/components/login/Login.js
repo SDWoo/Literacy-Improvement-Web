@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Authentication from "./Authentication";
 import { connect } from "react-redux";
 import { loginRequest } from "../../redux/authentication/actions";
+import OAuth from "./OAuth";
 
 class Login extends Component {
   handleLogin = (id, pw) => {
@@ -30,6 +31,7 @@ class Login extends Component {
     return (
       <div>
         <Authentication onLogin={this.handleLogin} />
+        <OAuth></OAuth>
       </div>
     );
   }
