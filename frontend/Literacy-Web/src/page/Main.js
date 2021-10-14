@@ -8,6 +8,7 @@ import {
   oneWordRequest,
   paraphraseCheckRequest,
   morphemeCheckRequest,
+  wordRankingRequest,
 } from "../redux";
 import SentenceParaphrase from "../components/SentenceParaphrase";
 
@@ -33,11 +34,13 @@ function Main({
   paraphraseResult,
   paraphraseCheckValid,
   morphemeCheckRequest,
+  wordRankingRequest,
   item,
 }) {
   useEffect(() => {
     // 렌더링
     dailyWordsRequest();
+    wordRankingRequest();
   }, []);
 
   const classes = useStyles();
@@ -65,7 +68,7 @@ function Main({
   const toastCheckParaphraseFailure = () => toast.error("확인 실패했습니다.");
 
   const onClickCheckParaphrase = (body) => {
-    paraphraseCheckRequest(body).then(() => {});
+    paraphraseCheckRequest(body).then(() => { });
   };
 
   if (paraphraseCheckResult === "paraphrase") {
@@ -138,6 +141,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     morphemeCheckRequest: (body) => {
       return dispatch(morphemeCheckRequest(body));
+    },
+    wordRankingRequest: () => {
+      return dispatch(wordRankingRequest());
     },
   };
 };

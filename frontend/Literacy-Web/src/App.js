@@ -7,6 +7,7 @@ import Main from "./page/Main";
 import TopBar from "./components/TopBar";
 import Word from "./page/Word";
 import MyPage from "./page/MyPage";
+import WordRanking from "./components/WordRanking";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/SignUp" component={SignUp} />
           <Route path="/MyPage" component={MyPage} />
           <Route path="/Word/:keyword" component={Word} />
+          <Route path="/Ranking" component={WordRanking} />
         </Switch>
       </div>
     </BrowserRouter>

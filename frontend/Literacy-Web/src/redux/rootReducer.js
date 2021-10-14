@@ -7,6 +7,7 @@ import myPage from "./myPage/reducer";
 import oneWord from "./oneWord/reducer";
 import paraphrase from "./paraphrase/reducer";
 import morpheme from "./morpheme/reducer";
+import ranking from "./ranking/reducer";
 
 const rootReducer = combineReducers({
   register: register,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   oneWord: oneWord,
   paraphrase: paraphrase,
   morpheme: morpheme,
+  ranking: ranking,
 });
 
 export default rootReducer;
