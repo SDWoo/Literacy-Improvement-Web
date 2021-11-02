@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import SignUp from "./components/signup/SignUp";
-import Login from "./components/login/Login";
+import Login from "./page/Login";
 import Main from "./page/Main";
 import TopBar from "./components/TopBar";
 import Word from "./page/Word";
@@ -20,10 +20,7 @@ function App() {
           <Route path="/SignUp" component={SignUp} />
           <Route path="/MyPage" component={MyPage} />
           <Route path="/Word/:keyword" component={Word} />
-          <Route
-            path="/oauth/callback/kakao"
-            component={OAuthRedirectHandler}
-          />
+          <Route path="/kakaoAuth" component={OAuthRedirectHandler} />
         </Switch>
       </div>
     </BrowserRouter>

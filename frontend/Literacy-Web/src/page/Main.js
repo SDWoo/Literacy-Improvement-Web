@@ -117,7 +117,7 @@ function Main({
 const mapStateToProps = (state) => {
   return {
     dailyWordsList: state.dailyWords.status.dailyWordsList,
-    isLoggedIn: state.authentication.status.isLoggedIn,
+    isLoggedIn: state.kakaoAuth.status.isLoggedIn,
     paraphraseResult: state.paraphrase.status.result,
     wordStatus: state.oneWord.status.wordStatus,
     paraphraseCheckValid: state.paraphrase.status.valid,

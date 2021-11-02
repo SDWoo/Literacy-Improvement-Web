@@ -4,26 +4,32 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { kakaoAuthRequest } from "../../redux";
+import { useHistory } from "react-router";
 
 //import Spinner from "./Spinner";
 
-function OAuthRedirectHandler({ kakaoAuthRequest }) {
-  const dispatch = useDispatch();
+function OAuthRedirectHandler({ kakaoAuthRequest, isLoggedIn }) {
+  const history = useHistory();
 
-  useEffect(async () => {
-    await kakaoAuthRequest(code);
-  });
+  useEffect(() => {
+    kakaoAuthRequest(code);
+  }, []);
 
   // 인가코드
   let code = new URL(window.location.href).searchParams.get("code");
   console.log(code);
+
+  if (isLoggedIn === true) {
+    // 카카오 로그인 되면
+    history.push("/Home");
+  }
 
   return <div>hello kakao</div>;
 }
 
 const mapStateToProps = (state) => {
   return {
-    //AUTHORIZE_CODE: state.kakaoAuth.status.AUTHORIZE_CODE,
+    isLoggedIn: state.kakaoAuth.status.isLoggedIn,
   };
 };
 

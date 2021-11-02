@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     // padding: theme.spacing(10),
     // width: '100%',
     // maxWidth: '30ch',
-    height: "42ch",
     backgroundColor: theme.palette.background.paper,
     border: "1px solid #D9D9D9",
     borderRadius: "20px",
@@ -48,8 +47,8 @@ export default function OAuth({}) {
 
   const classes = useStyles();
 
-  const CLIENT_ID = "3e67e0d19fc8b2bee3b0a7c3d5e9668d";
-  const REDIRECT_URI = "http://localhost:3000/oauth/callback/kakao";
+  const CLIENT_ID = "ade593cab628c91e766dd3f9497bbc92";
+  const REDIRECT_URI = "http://localhost:3000/kakaoAuth";
 
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 

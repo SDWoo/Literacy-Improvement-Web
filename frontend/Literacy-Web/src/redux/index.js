@@ -10,4 +10,4 @@ export { checkUserRequest, logoutRequest } from "./authentication/actions";
 export { oneWordRequest } from "./oneWord/actions";
 export { paraphraseCheckRequest } from "./paraphrase/actions";
 export { morphemeCheckRequest } from "./morpheme/actions";
-export { kakaoAuthRequest } from "./kakaoAuth/actions";
+export { kakaoAuthRequest, kakaoLogoutRequest } from "./kakaoAuth/actions";
