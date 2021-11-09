@@ -2,9 +2,8 @@ import axios from "axios";
 import {
   ONE_WORD_REQUEST,
   ONE_WORD_REQUEST_SUCCESS,
-  ONE_WORD_REQUEST_FAILURE
-} from "./types"
-
+  ONE_WORD_REQUEST_FAILURE,
+} from "./types";
 
 export function oneWordRequest(word) {
   return (dispatch) => {
@@ -12,8 +11,8 @@ export function oneWordRequest(word) {
     return axios
       .get("http://localhost:8080/oneWord/", {
         params: {
-          q: word
-        }
+          q: word,
+        },
       })
       .then((response) => {
         dispatch(oneWordRequestSuccess(response.data));

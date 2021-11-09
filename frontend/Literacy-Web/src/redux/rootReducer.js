@@ -8,6 +8,7 @@ import oneWord from "./oneWord/reducer";
 import paraphrase from "./paraphrase/reducer";
 import morpheme from "./morpheme/reducer";
 import ranking from "./ranking/reducer";
+import kakaoAuth from "./kakaoAuth/reducer";
 
 const rootReducer = combineReducers({
   register: register,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   paraphrase: paraphrase,
   morpheme: morpheme,
   ranking: ranking,
+  kakaoAuth: kakaoAuth,
 });
 
 export default rootReducer;
