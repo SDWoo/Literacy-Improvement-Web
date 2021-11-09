@@ -2,8 +2,13 @@ import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
-import { Typography, Card, CardActions, CardContent, Button } from "@material-ui/core";
-
+import {
+  Typography,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     display: "inline-block",
     borderBottom: "1px solid #D9D9D9",
-    width: "40%"
+    width: "40%",
   },
   button: {
     float: "left",
@@ -80,10 +85,9 @@ export default function MyDictionary({ dictionaryWordsList, handleDelete }) {
   };
 
   console.log(wordName);
-  // let ttt = ["김정원", "김태식", "김또깡"]
+  let ttt = ["김정원", "김태식", "김또깡"];
   const myWordList = ttt.map((word, index) => (
-    <Grid item key={index} xs={6} >
-
+    <Grid item key={index} xs={6}>
       <Card>
         <Link to={`/Word/${wordName[index]}`} className={classes.decoration}>
           <CardContent>
@@ -105,8 +109,10 @@ export default function MyDictionary({ dictionaryWordsList, handleDelete }) {
           <Button
             size="small"
             className={classes.deletebutton}
-            onClick={() => wordDelete(wordName[index])
-            }>삭제</Button>
+            onClick={() => wordDelete(wordName[index])}
+          >
+            삭제
+          </Button>
         </CardActions>
       </Card>
 
@@ -132,9 +138,7 @@ export default function MyDictionary({ dictionaryWordsList, handleDelete }) {
         alignItems="flex-start"
       >
         <Grid item xs={12}>
-          <h3>
-            내 단어장
-          </h3>
+          <h3>내 단어장</h3>
         </Grid>
         {myWordList}
       </Grid>
