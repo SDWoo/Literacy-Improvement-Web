@@ -60,7 +60,7 @@ function TopBar({
 }) {
   useEffect(() => {
     // 렌더링
-    checkUserRequest();
+    checkSessionRequest();
 
     // 현재 경로가 '/'라면 Home으로 이동
     if (thisPath === "/") {
