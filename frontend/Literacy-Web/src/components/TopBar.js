@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { checkUserRequest, logoutRequest } from "../redux";
+import { checkUserRequest, logoutRequest, kakaoLogoutRequest } from "../redux";
 import { useHistory } from "react-router";
 // import
 import { makeStyles } from "@material-ui/core/styles";
@@ -45,10 +45,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
+function TopBar({
+  userStatus,
+  checkUserRequest,
+  logoutRequest,
+  isLoggedIn,
+  kakaoLogoutRequest,
+  checkSessionRequest,
+}) {
   useEffect(() => {
     // 렌더링
-    checkUserRequest();
+    //checkUserRequest();
 
     // 현재 경로가 '/'라면 Home으로 이동
     if (thisPath === "/") {
@@ -62,7 +69,7 @@ function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
   const toastOnLogout = () => toast("로그아웃 되었습니다.");
 
   const onLogout = (e) => {
-    logoutRequest().then(() => {
+    kakaoLogoutRequest().then(() => {
       toastOnLogout();
       window.location.replace("/Home");
     });
@@ -109,7 +116,12 @@ function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
               Kotudy
             </Typography>
           </Button>
-          {userStatus.isLoggedIn ? logoutButton : loginButton}
+          <Button href="/Quiz" color="inherit" className={classes.title}>
+            <Typography variant="h6" className={classes.title}>
+              Quiz
+            </Typography>
+          </Button>
+          {isLoggedIn ? logoutButton : loginButton}
         </Toolbar>
       </AppBar>
       <ToastContainer
@@ -131,6 +143,7 @@ function TopBar({ userStatus, checkUserRequest, logoutRequest }) {
 const mapStateToProps = (state) => {
   return {
     userStatus: state.authentication.status,
+    isLoggedIn: state.kakaoAuth.status.isLoggedIn,
   };
 };
 
@@ -141,6 +154,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     checkUserRequest: () => {
       return dispatch(checkUserRequest());
+    },
+    kakaoLogoutRequest: () => {
+      return dispatch(kakaoLogoutRequest());
     },
   };
 };

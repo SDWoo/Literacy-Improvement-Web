@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { oneWordRequest } from "../redux";
+import { oneWordRequest, dictionaryWordsRequest } from "../redux";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import { Button } from "@material-ui/core";
+
+import { ToastContainer, toast, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,12 +17,16 @@ const useStyles = makeStyles((theme) => ({
   padding: {
     paddingBottom: theme.spacing(1),
   },
+  paper: {
+    borderBottom: "1px solid black",
+  },
 }));
-function Word({ wordStatus, oneWordRequest }) {
+function Word({ wordStatus, oneWordRequest, dictionaryWordsRequest }) {
   useEffect(() => {
     oneWordRequest(keyword);
-    // 렌더링
   }, []);
+  const { keyword } = useParams();
+  console.log(keyword);
   let wordName = [];
   let pronunciation = [];
   let pos = [];
@@ -33,8 +41,16 @@ function Word({ wordStatus, oneWordRequest }) {
       }
     </div>
   ));
-  const { keyword } = useParams();
   const classes = useStyles();
+  const handleClickDictionary = () => {
+    dictionaryWordsRequest(wordName[0]).then(()=> {
+      toastAddToNoteSuccess()
+    });
+    console.log(wordName[0]);
+  };
+
+  const toastAddToNoteSuccess = () => toast("단어장에 추가되었습니다!");
+
   // 사용자에게 보여지는 부분
   return (
     <div>
@@ -45,7 +61,10 @@ function Word({ wordStatus, oneWordRequest }) {
               {wordName[0]} [{pronunciation[0]}]
             </h3>
           </Grid>
-          <Grid item xs={9}></Grid>
+          <Grid item xs={2}></Grid>
+          <Grid item xs={7}>
+            <Button color="primary" variant="contained" onClick={handleClickDictionary}>나만의 단어장에 추가</Button>
+          </Grid>
           {wordName.map((word, index) => (
             <Grid item key={index} xs={12} className={classes.paper}>
               <h4>
@@ -61,6 +80,18 @@ function Word({ wordStatus, oneWordRequest }) {
           ))}
         </Grid>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Flip}
+      />
     </div>
   );
 }
@@ -74,6 +105,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     oneWordRequest: (word) => {
       return dispatch(oneWordRequest(word));
+    },
+    dictionaryWordsRequest: (word) => {
+      return dispatch(dictionaryWordsRequest(word));
     },
   };
 };

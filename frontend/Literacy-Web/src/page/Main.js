@@ -7,6 +7,8 @@ import {
   dailyWordsRequest,
   oneWordRequest,
   paraphraseCheckRequest,
+  morphemeCheckRequest,
+  wordRankingRequest,
 } from "../redux";
 import SentenceParaphrase from "../components/SentenceParaphrase";
 
@@ -31,10 +33,14 @@ function Main({
   paraphraseCheckRequest,
   paraphraseResult,
   paraphraseCheckValid,
+  morphemeCheckRequest,
+  wordRankingRequest,
+  item,
 }) {
   useEffect(() => {
     // 렌더링
     dailyWordsRequest();
+    wordRankingRequest();
   }, []);
 
   const classes = useStyles();
@@ -42,9 +48,18 @@ function Main({
     (state) => state.paraphrase.status.result
   );
 
-  const handleOneWord = (word) => {
-    oneWordRequest(word);
-    console.log(word);
+  // const handleOneWord = (word) => {
+  //   oneWordRequest(word);
+  //   console.log(word);
+  // };
+
+  const handleMorpheme = (search) => {
+    let body = {
+      analysisCode: "ner",
+      text: search,
+    };
+    console.log(search);
+    morphemeCheckRequest(body);
   };
 
   const toastCheckParaphrase = () => toast("같은 의미입니다!");
@@ -53,7 +68,7 @@ function Main({
   const toastCheckParaphraseFailure = () => toast.error("확인 실패했습니다.");
 
   const onClickCheckParaphrase = (body) => {
-    paraphraseCheckRequest(body).then(() => {});
+    paraphraseCheckRequest(body).then(() => { });
   };
 
   if (paraphraseCheckResult === "paraphrase") {
@@ -81,8 +96,8 @@ function Main({
           </Grid>
           <Grid item xs={12}>
             <MainWordMeaning
-              handleOneWord={handleOneWord}
-              wordStatus={wordStatus}
+              handleMorpheme={handleMorpheme}
+              item={item}
             ></MainWordMeaning>
           </Grid>
         </Grid>
@@ -105,10 +120,11 @@ function Main({
 const mapStateToProps = (state) => {
   return {
     dailyWordsList: state.dailyWords.status.dailyWordsList,
-    isLoggedIn: state.authentication.status.isLoggedIn,
+    isLoggedIn: state.kakaoAuth.status.isLoggedIn,
     paraphraseResult: state.paraphrase.status.result,
     wordStatus: state.oneWord.status.wordStatus,
     paraphraseCheckValid: state.paraphrase.status.valid,
+    item: state.morpheme.status.item,
   };
 };
 
@@ -122,6 +138,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     paraphraseCheckRequest: (body) => {
       return dispatch(paraphraseCheckRequest(body));
+    },
+    morphemeCheckRequest: (body) => {
+      return dispatch(morphemeCheckRequest(body));
+    },
+    wordRankingRequest: () => {
+      return dispatch(wordRankingRequest());
     },
   };
 };

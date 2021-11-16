@@ -2,11 +2,14 @@ import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import SignUp from "./components/signup/SignUp";
-import Login from "./components/login/Login";
+import Login from "./page/Login";
 import Main from "./page/Main";
 import TopBar from "./components/TopBar";
 import Word from "./page/Word";
 import MyPage from "./page/MyPage";
+import WordRanking from "./components/WordRanking";
+import OAuthRedirectHandler from "./components/login/OAuthRedirectHandler";
+import Quiz from "./components/quiz/Quiz";
 
 function App() {
   return (
@@ -15,10 +18,13 @@ function App() {
         <Route path="/" component={TopBar} />
         <Switch>
           <Route path="/Home" component={Main} />
+          <Route path="/Quiz" component={Quiz} />
           <Route path="/Login" component={Login} />
           <Route path="/SignUp" component={SignUp} />
           <Route path="/MyPage" component={MyPage} />
-          <Route path="/Word/:word" component={Word} />
+          <Route path="/Word/:keyword" component={Word} />
+          <Route path="/Ranking" component={WordRanking} />
+          <Route path="/kakaoAuth" component={OAuthRedirectHandler} />
         </Switch>
       </div>
     </BrowserRouter>
