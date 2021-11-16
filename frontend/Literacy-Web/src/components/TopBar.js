@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { checkUserRequest, logoutRequest, kakaoLogoutRequest } from "../redux";
+import {
+  checkUserRequest,
+  logoutRequest,
+  kakaoLogoutRequest,
+  checkSessionRequest,
+} from "../redux";
 import { useHistory } from "react-router";
 // import
 import { makeStyles } from "@material-ui/core/styles";
@@ -55,7 +60,7 @@ function TopBar({
 }) {
   useEffect(() => {
     // 렌더링
-    //checkUserRequest();
+    checkSessionRequest();
 
     // 현재 경로가 '/'라면 Home으로 이동
     if (thisPath === "/") {
@@ -97,6 +102,7 @@ function TopBar({
       </Button>
     </div>
   );
+  console.log("isLoggedIn: " + isLoggedIn);
 
   // 사용자에게 보여지는 부분
   return (
@@ -152,6 +158,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     kakaoLogoutRequest: () => {
       return dispatch(kakaoLogoutRequest());
+    },
+    checkSessionRequest: () => {
+      return dispatch(checkSessionRequest());
     },
   };
 };
