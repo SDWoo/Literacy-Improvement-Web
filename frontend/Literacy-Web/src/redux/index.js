@@ -11,5 +11,9 @@ export { oneWordRequest } from "./oneWord/actions";
 export { paraphraseCheckRequest } from "./paraphrase/actions";
 export { morphemeCheckRequest } from "./morpheme/actions";
 export { wordRankingRequest } from "./ranking/actions";
-export { kakaoAuthRequest, kakaoLogoutRequest } from "./kakaoAuth/actions";
-export { quizRequest} from "./quiz/actions";
+export {
+  kakaoAuthRequest,
+  kakaoLogoutRequest,
+  checkSessionRequest,
+} from "./kakaoAuth/actions";
+export { quizRequest } from "./quiz/actions";

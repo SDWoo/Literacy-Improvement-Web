@@ -78,49 +78,49 @@ export default function kakaoAuth(state = initialState, action) {
         status: {
           valid: false,
           isLoggedIn: false,
-          userId: "INIT",
+          userInfo: "INIT",
         },
       };
 
     // /* Check Session KAKAO Login info */
-    // case types.KAKAO_VERIFICATION:
-    //   return {
-    //     ...state,
-    //     status: {
-    //       ...state.status,
-    //     },
-    //   };
-    // case types.KAKAO_VERIFICATION_SUCCESS:
-    //   return {
-    //     ...state,
-    //     kakakoAuth: {
-    //       status: "SUCCESS",
-    //     },
-    //     kakaoLogin: {
-    //       status: "SUCCESS",
-    //     },
-    //     status: {
-    //       ...state.status,
-    //       isLoggedIn: true,
-    //       valid: true,
-    //       userId: action.userId,
-    //     },
-    //   };
-    // case types.KAKAO_VERIFICATION_FAILURE:
-    //   return {
-    //     ...state,
-    //     kakaoAuth: {
-    //       status: "FAILURE",
-    //     },
-    //     kakaoLogin: {
-    //       status: "FAILURE",
-    //     },
-    //     status: {
-    //       ...state.status,
-    //       isLoggedIn: false,
-    //       valid: false,
-    //     },
-    //   };
+    case types.KAKAO_VERIFICATION:
+      return {
+        ...state,
+        status: {
+          ...state.status,
+        },
+      };
+    case types.KAKAO_VERIFICATION_SUCCESS:
+      return {
+        ...state,
+        kakakoAuth: {
+          status: "SUCCESS",
+        },
+        kakaoLogin: {
+          status: "SUCCESS",
+        },
+        status: {
+          ...state.status,
+          isLoggedIn: true,
+          valid: true,
+          userInfo: action.userInfo,
+        },
+      };
+    case types.KAKAO_VERIFICATION_FAILURE:
+      return {
+        ...state,
+        kakaoAuth: {
+          status: "FAILURE",
+        },
+        kakaoLogin: {
+          status: "FAILURE",
+        },
+        status: {
+          ...state.status,
+          isLoggedIn: false,
+          valid: false,
+        },
+      };
 
     /* default */
     default:
