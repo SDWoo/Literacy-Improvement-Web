@@ -17,3 +17,4 @@ export {
   checkSessionRequest,
 } from "./kakaoAuth/actions";
 export { quizRequest } from "./quiz/actions";
+export { voiceRecognitionRequest } from "./voiceRecognition/actions";

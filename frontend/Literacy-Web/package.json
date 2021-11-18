@@ -16,6 +16,7 @@
     "materialize-css": "^1.0.0",
     "npm": "^7.21.1",
     "react": "^17.0.2",
+    "react-audio-player": "^0.17.0",
     "react-axios": "^2.0.5",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",

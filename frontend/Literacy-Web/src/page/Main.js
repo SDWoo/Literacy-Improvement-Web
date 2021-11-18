@@ -9,8 +9,10 @@ import {
   paraphraseCheckRequest,
   morphemeCheckRequest,
   wordRankingRequest,
+  voiceRecognitionRequest,
 } from "../redux";
 import SentenceParaphrase from "../components/SentenceParaphrase";
+import VoiceRecognition from "../components/voiceRecognition/VoiceRecognition";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -35,6 +37,7 @@ function Main({
   paraphraseCheckValid,
   morphemeCheckRequest,
   wordRankingRequest,
+  voiceRecognitionRequest,
   item,
 }) {
   useEffect(() => {
@@ -68,7 +71,7 @@ function Main({
   const toastCheckParaphraseFailure = () => toast.error("확인 실패했습니다.");
 
   const onClickCheckParaphrase = (body) => {
-    paraphraseCheckRequest(body).then(() => { });
+    paraphraseCheckRequest(body).then(() => {});
   };
 
   if (paraphraseCheckResult === "paraphrase") {
@@ -76,6 +79,12 @@ function Main({
   } else if (paraphraseCheckResult === "not paraphrase") {
     toastCheckNonParaphrase();
   }
+
+  // voiceRecognition
+  const onClickVoiceRecognition = (formData) => {
+    voiceRecognitionRequest(formData).then(() => {});
+  };
+
   // 사용자에게 보여지는 부분
   return (
     <div>
@@ -99,6 +108,9 @@ function Main({
               handleMorpheme={handleMorpheme}
               item={item}
             ></MainWordMeaning>
+            <VoiceRecognition
+              onClickVoiceRecognition={onClickVoiceRecognition}
+            ></VoiceRecognition>
           </Grid>
         </Grid>
       </div>
@@ -144,6 +156,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     wordRankingRequest: () => {
       return dispatch(wordRankingRequest());
+    },
+    voiceRecognitionRequest: (formData) => {
+      return dispatch(voiceRecognitionRequest(formData));
     },
   };
 };
