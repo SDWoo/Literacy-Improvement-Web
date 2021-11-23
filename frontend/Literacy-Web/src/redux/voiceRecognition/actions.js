@@ -5,10 +5,19 @@ import {
   VOICE_RECOGNITION_FAILURE,
 } from "./types";
 
-export function voiceRecognitionRequest(formData) {
+export function voiceRecognitionRequest(data) {
   return (dispatch) => {
     dispatch(voiceRecognition());
-    console.log(formData);
+
+    // audio file formData로 줄때
+    const formData = new FormData();
+    formData.append("audioFile", data);
+
+    // audio base64 데이터로 줄 때
+    let body = {
+      audio: data,
+    };
+    console.log(formData.get("audioFile"));
     return axios
       .post("http://localhost:8080/voiceRecognition", formData)
       .then((response) => {

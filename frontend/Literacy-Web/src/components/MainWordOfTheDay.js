@@ -155,7 +155,7 @@ export default function MainWordOfTheDay({ dailyWordsList, isLoggedIn }) {
         alignItems="center"
       >
         <Grid item xs={12}>
-          <h3>오늘의 단어</h3>
+          <h5>오늘의 단어</h5>
         </Grid>
         {isLoggedIn ? dailyWord : requestLogin}
       </Grid>

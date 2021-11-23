@@ -14,6 +14,7 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
   const [source, setSource] = useState();
   const [analyser, setAnalyser] = useState();
   const [audioUrl, setAudioUrl] = useState();
+  const [reAudioUrl, setReAudioUrl] = useState();
 
   let voiceFile;
 
@@ -83,26 +84,55 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
 
   const onSubmitAudioFile = useCallback(() => {
     if (audioUrl) {
+      console.log(audioUrl);
       console.log(URL.createObjectURL(audioUrl)); // 출력된 링크에서 녹음된 오디오 확인 가능
     }
     // File 생성자를 사용해 파일로 변환
-    const sound = new File([audioUrl], "soundBlob", {
+    const audioFile = new File([audioUrl], "audioFile.mp3", {
       lastModified: new Date().getTime(),
       type: "audio",
     });
-    voiceFile = sound;
-    //console.log(sound); // File 정보 출력
-    console.log(voiceFile); // File 정보 출력
+    console.log(audioFile);
+    // 오디오 파일 자체를 보내기
+    onSearchAudioFile(audioFile);
+
     setIsCheckRec(false);
   }, [audioUrl]);
 
-  // 검색하기 버튼 클릭 시 음성파일 보내기
-  const onSearchAudioFile = (e) => {
-    const formData = new FormData();
+  // 결과확인 클릭 시 음성파일 보내기
+  function onSearchAudioFile(audioUrl) {
+    let reader = new FileReader();
 
-    formData.append("file", voiceFile);
-    onClickVoiceRecognition(formData);
-  };
+    // Audio 파일 base64로 인코딩
+    if (audioUrl) {
+      reader.readAsDataURL(audioUrl);
+    }
+    reader.onload = function (e) {
+      // Base64로 인코딩한 후 다시 디코딩 해준다.
+      const base64Audio = e.target.result.toString().split(",");
+      const contentType = base64Audio[0].split(":")[1];
+      const raw = window.atob(base64Audio[1]);
+      const rawLength = raw.length;
+      // 부호 없는 1byte 정수 배열을 생성
+      const uInt8Array = new Uint8Array(rawLength);
+      // 길이만 지정된 배열
+      let i = 0;
+      while (i < rawLength) {
+        uInt8Array[i] = raw.charCodeAt(i);
+        i++;
+      }
+
+      const reAudioBlob = new Blob([uInt8Array], {
+        type: contentType,
+      });
+      setReAudioUrl(reAudioBlob);
+
+      console.log(reAudioUrl);
+      // reAudioUrl로 file을 만들어서 formData에 넣어서 전송하기
+
+      onClickVoiceRecognition(base64Audio[1]);
+    };
+  }
 
   const onRecAudioButton = (
     <Button color="primary" variant="contained" onClick={onRecAudio}>
@@ -128,8 +158,8 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
         </Button>
       </Grid>
       <Grid item xs={12}>
-        {audioUrl ? (
-          <ReactAudioPlayer src={URL.createObjectURL(audioUrl)} controls />
+        {reAudioUrl ? (
+          <ReactAudioPlayer src={URL.createObjectURL(reAudioUrl)} controls />
         ) : undefined}
       </Grid>
     </div>
@@ -144,15 +174,6 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
         </Grid>
         <Grid item xs={12}>
           {isCheckRec ? checkRec : checkedRec}
-        </Grid>
-        <Grid item xs={12}>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={onSearchAudioFile}
-          >
-            검색하기
-          </Button>
         </Grid>
       </Grid>
     </div>

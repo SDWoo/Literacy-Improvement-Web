@@ -4,8 +4,6 @@ import "./MainWordMeaning.css";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 
-
-
 export default function MainWordMeaning({ handleMorpheme, item }) {
   const [checked, setChecked] = useState(false);
   const [searchBox, setSearchBox] = useState("");
@@ -45,25 +43,23 @@ export default function MainWordMeaning({ handleMorpheme, item }) {
         autoFocus
         onChange={(e) => handleChange(e)}
       />
-      <Button color="primary" onClick={checkMorpheme}  variant="contained">
+      <Button color="primary" onClick={checkMorpheme} variant="contained">
         검색
       </Button>
     </div>
   );
-  const searchSuccess =(
-   morpheme.pos.map((item, index) => (
+  const searchSuccess = morpheme.pos.map((item, index) => (
     <div key={index}>
       <h2 style={{ margineft: 10 }}>
         [{morpheme.pos[index]}] {morpheme.name[index]}
       </h2>
       <Link to={`/Word/${morpheme.name[index]}`}>
-        <Button color="primary"  variant="contained">더 알아보기</Button>
+        <Button color="primary" variant="contained">
+          더 알아보기
+        </Button>
       </Link>
     </div>
-  ))
-  );
-
-
+  ));
 
   return (
     <div className="header">
@@ -77,6 +73,5 @@ export default function MainWordMeaning({ handleMorpheme, item }) {
         </Grid>
       </Grid>
     </div>
-    
   );
 }

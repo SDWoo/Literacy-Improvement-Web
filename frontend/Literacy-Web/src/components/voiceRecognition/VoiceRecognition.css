@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  align-items: left;
+  margin: 10px;
+  /* justify-content: space-evenly; */
+  flex-direction: column;
+  /* height: 25vh; */
+  height: auto;
+  /* width: 100%; */
+  border: 1px solid #d9d9d9;
+  border-radius: 20px;
+}
+
+.title {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  font-size: 1.1vw;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  border-bottom: 1px solid #d9d9d9;
+}

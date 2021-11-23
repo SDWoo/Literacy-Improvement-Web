@@ -11,7 +11,7 @@ import {
   wordRankingRequest,
   voiceRecognitionRequest,
 } from "../redux";
-import SentenceParaphrase from "../components/SentenceParaphrase";
+import SentenceParaphrase from "../components/sentenceParaphrase/SentenceParaphrase";
 import VoiceRecognition from "../components/voiceRecognition/VoiceRecognition";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -81,8 +81,8 @@ function Main({
   }
 
   // voiceRecognition
-  const onClickVoiceRecognition = (formData) => {
-    voiceRecognitionRequest(formData).then(() => {});
+  const onClickVoiceRecognition = (data) => {
+    voiceRecognitionRequest(data).then(() => {});
   };
 
   // 사용자에게 보여지는 부분
@@ -157,8 +157,8 @@ const mapDispatchToProps = (dispatch) => {
     wordRankingRequest: () => {
       return dispatch(wordRankingRequest());
     },
-    voiceRecognitionRequest: (formData) => {
-      return dispatch(voiceRecognitionRequest(formData));
+    voiceRecognitionRequest: (data) => {
+      return dispatch(voiceRecognitionRequest(data));
     },
   };
 };
