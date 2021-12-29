@@ -100,6 +100,10 @@ function TopBar({
       <Button href="/Mypage" color="inherit">
         MyPage
       </Button>
+      |
+      <Button href="/Ranking" color="inherit">
+        Ranking
+      </Button>
     </div>
   );
 
@@ -119,11 +123,6 @@ function TopBar({
           <Button href="/Home" color="inherit" className={classes.title}>
             <Typography variant="h6" className={classes.title}>
               Kotudy
-            </Typography>
-          </Button>
-          <Button href="/Quiz" color="inherit" className={classes.title}>
-            <Typography variant="h6" className={classes.title}>
-              Quiz
             </Typography>
           </Button>
           {isLoggedIn ? logoutButton : loginButton}

@@ -11,6 +11,11 @@ export function voiceRecognitionRequest(data) {
 
     // audio file formData로 줄때
     const formData = new FormData();
+
+    const config = {
+      header: { "content-type": "multipart/form-data" },
+    };
+
     formData.append("audioFile", data);
 
     // audio base64 데이터로 줄 때
@@ -19,7 +24,7 @@ export function voiceRecognitionRequest(data) {
     };
     console.log(formData.get("audioFile"));
     return axios
-      .post("http://localhost:8080/voiceRecognition", formData)
+      .post("http://localhost:8080/voiceRecognition", formData, config)
       .then((response) => {
         dispatch(voiceRecognitionSuccess(response.data));
       })

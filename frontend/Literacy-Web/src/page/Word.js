@@ -31,22 +31,23 @@ function Word({ wordStatus, oneWordRequest, dictionaryWordsRequest }) {
   let pronunciation = [];
   let pos = [];
   let sense = [];
+  let definition = [];
   const itemLoad = wordStatus.map((item, index) => (
     <div key={index}>
       {
         (wordName.push(item.word),
         pronunciation.push(item.pronunciation),
         pos.push(item.pos),
-        sense.push(item.sense))
+        sense.push(item.sense),
+        definition.push(item.sense[0].definition))
       }
     </div>
   ));
   const classes = useStyles();
   const handleClickDictionary = () => {
-    dictionaryWordsRequest(wordName[0]).then(()=> {
-      toastAddToNoteSuccess()
+    dictionaryWordsRequest(wordName[0], definition[0]).then(() => {
+      toastAddToNoteSuccess();
     });
-    console.log(wordName[0]);
   };
 
   const toastAddToNoteSuccess = () => toast("단어장에 추가되었습니다!");
@@ -63,7 +64,13 @@ function Word({ wordStatus, oneWordRequest, dictionaryWordsRequest }) {
           </Grid>
           <Grid item xs={2}></Grid>
           <Grid item xs={7}>
-            <Button color="primary" variant="contained" onClick={handleClickDictionary}>나만의 단어장에 추가</Button>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={handleClickDictionary}
+            >
+              나만의 단어장에 추가
+            </Button>
           </Grid>
           {wordName.map((word, index) => (
             <Grid item key={index} xs={12} className={classes.paper}>
@@ -74,6 +81,7 @@ function Word({ wordStatus, oneWordRequest, dictionaryWordsRequest }) {
               {sense[index].map((item, i) => (
                 <h5>
                   {i + 1}.{item.definition}
+                  {console.log(definition[i])}
                 </h5>
               ))}
             </Grid>
@@ -106,8 +114,8 @@ const mapDispatchToProps = (dispatch) => {
     oneWordRequest: (word) => {
       return dispatch(oneWordRequest(word));
     },
-    dictionaryWordsRequest: (word) => {
-      return dispatch(dictionaryWordsRequest(word));
+    dictionaryWordsRequest: (word, definition) => {
+      return dispatch(dictionaryWordsRequest(word, definition));
     },
   };
 };

@@ -45,7 +45,7 @@ export function searchWordsRequestFailure() {
     type: SEARCH_WORDS_REQUEST_FAILURE,
   };
 }
-export function dictionaryWordsRequest(word) {
+export function dictionaryWordsRequest(word, definition) {
   return (dispatch) => {
     dispatch(dictionaryWordsRequestStatus());
     console.log(word);
@@ -65,6 +65,7 @@ export function dictionaryWordsRequest(word) {
         .get("http://localhost:8080/addToNote", {
           params: {
             q: word,
+            p: definition
           },
         })
         .then((response) => {

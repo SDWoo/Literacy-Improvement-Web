@@ -9,11 +9,9 @@ import {
   paraphraseCheckRequest,
   morphemeCheckRequest,
   wordRankingRequest,
-  voiceRecognitionRequest,
+  quizRequest,
 } from "../redux";
-import SentenceParaphrase from "../components/sentenceParaphrase/SentenceParaphrase";
-import VoiceRecognition from "../components/voiceRecognition/VoiceRecognition";
-
+import Mainquiz from "../components/Mainquiz";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
@@ -28,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Main({
   dailyWordsList,
-  wordStatus,
+  quizStatus,
   dailyWordsRequest,
   oneWordRequest,
   isLoggedIn,
@@ -37,11 +35,11 @@ function Main({
   paraphraseCheckValid,
   morphemeCheckRequest,
   wordRankingRequest,
-  voiceRecognitionRequest,
+  quizRequest,
   item,
 }) {
   useEffect(() => {
-    // 렌더링
+    quizRequest();
     dailyWordsRequest();
     wordRankingRequest();
   }, []);
@@ -79,12 +77,6 @@ function Main({
   } else if (paraphraseCheckResult === "not paraphrase") {
     toastCheckNonParaphrase();
   }
-
-  // voiceRecognition
-  const onClickVoiceRecognition = (data) => {
-    voiceRecognitionRequest(data).then(() => {});
-  };
-
   // 사용자에게 보여지는 부분
   return (
     <div>
@@ -97,20 +89,13 @@ function Main({
             ></MainWordOfTheDay>
           </Grid>
           <Grid item xs={4}>
-            <SentenceParaphrase
-              onClickCheckParaphrase={onClickCheckParaphrase}
-              paraphraseCheckValid={paraphraseCheckValid}
-              paraphraseResult={paraphraseResult}
-            ></SentenceParaphrase>
+            <Mainquiz quizStatus={quizStatus}></Mainquiz>
           </Grid>
           <Grid item xs={12}>
             <MainWordMeaning
               handleMorpheme={handleMorpheme}
               item={item}
             ></MainWordMeaning>
-            <VoiceRecognition
-              onClickVoiceRecognition={onClickVoiceRecognition}
-            ></VoiceRecognition>
           </Grid>
         </Grid>
       </div>
@@ -131,6 +116,7 @@ function Main({
 }
 const mapStateToProps = (state) => {
   return {
+    quizStatus: state.quiz.status.quizStatus,
     dailyWordsList: state.dailyWords.status.dailyWordsList,
     isLoggedIn: state.kakaoAuth.status.isLoggedIn,
     paraphraseResult: state.paraphrase.status.result,
@@ -157,8 +143,8 @@ const mapDispatchToProps = (dispatch) => {
     wordRankingRequest: () => {
       return dispatch(wordRankingRequest());
     },
-    voiceRecognitionRequest: (data) => {
-      return dispatch(voiceRecognitionRequest(data));
+    quizRequest: () => {
+      return dispatch(quizRequest());
     },
   };
 };

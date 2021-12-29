@@ -48,7 +48,6 @@ function MyPage({
               handleDelete={handleDelete}
             ></MyDictionary>
           </Grid>
-         
         </Grid>
       </div>
     </div>
@@ -68,8 +67,8 @@ const mapDispatchToProps = (dispatch) => {
     searchWordsRequest: () => {
       return dispatch(searchWordsRequest());
     },
-    dictionaryWordsRequest: (word) => {
-      return dispatch(dictionaryWordsRequest(word));
+    dictionaryWordsRequest: (word, definition) => {
+      return dispatch(dictionaryWordsRequest(word, definition));
     },
     wordDeleteRequest: (word) => {
       return dispatch(wordDeleteRequest(word));

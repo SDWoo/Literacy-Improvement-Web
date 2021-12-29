@@ -2,13 +2,8 @@ import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
-import {
-  Typography,
-  Card,
-  CardActions,
-  CardContent,
-  Button,
-} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(5),
     // width: '100%',
     // maxWidth: '100ch',
-    // height: "42ch",
+    height: "42ch",
     backgroundColor: theme.palette.background.paper,
     borderRadius: "20px",
     border: "1px solid #D9D9D9",
@@ -55,16 +50,11 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontSize: "0.85rem",
     fontWeight: "400",
-    opacity: "0.6",
 
-    backgroundColor: "#FF0101",
+    backgroundColor: "#ff575d",
   },
   test: {
     border: "1px solid #D9D9D9",
-  },
-  decoration: {
-    textDecoration: "none",
-    color: "inherit",
   },
 }));
 
@@ -85,46 +75,18 @@ export default function MyDictionary({ dictionaryWordsList, handleDelete }) {
   };
 
   console.log(wordName);
-  let ttt = ["김정원", "김태식", "김또깡"];
-  const myWordList = ttt.map((word, index) => (
-    <Grid item key={index} xs={6}>
-      <Card>
-        <Link to={`/Word/${wordName[index]}`} className={classes.decoration}>
-          <CardContent>
-            <Typography variant="h5" component="h2">
-              {wordName[index]}
-            </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-              {wordName[index]}
-            </Typography>
-            <Typography component="p">
-              여기다가 예제 몇개 써놓으면 괜찮지 않을까
-              <br />
-              {'"a benevolent smile"'}
-            </Typography>
-          </CardContent>
-        </Link>
-        <br />
-        <CardActions>
-          <Button
-            size="small"
-            className={classes.deletebutton}
-            onClick={() => wordDelete(wordName[index])}
-          >
-            삭제
-          </Button>
-        </CardActions>
-      </Card>
 
-      {/* <Link to={`/Word/${wordName[index]}`}>
+  const myWordList = wordName.map((word, index) => (
+    <Grid item key={index} xs={4} className={classes.paper}>
+      <Link to={`/Word/${wordName[index]}`}>
         <button className={classes.button}>{wordName[index]}</button>
       </Link>
-      <Button
+      <button
         className={classes.deletebutton}
         onClick={() => wordDelete(wordName[index])}
       >
         삭제
-      </Button> */}
+      </button>
     </Grid>
   ));
   // 사용자에게 보여지는 부분
@@ -133,8 +95,8 @@ export default function MyDictionary({ dictionaryWordsList, handleDelete }) {
       <Grid
         container
         spacing={3}
-        // direction="column"
-        // justifyContent="center"
+        direction="column"
+        justifyContent="center"
         alignItems="flex-start"
       >
         <Grid item xs={12}>
@@ -145,4 +107,3 @@ export default function MyDictionary({ dictionaryWordsList, handleDelete }) {
     </div>
   );
 }
-//props 내용물 설정되면 출력형식 바꿔야함

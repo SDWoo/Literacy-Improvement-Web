@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 
 import ReactAudioPlayer from "react-audio-player";
+import { useSpeechRecognition } from "react-speech-kit";
 
 export default function VoiceRecognition({ onClickVoiceRecognition }) {
   const [stream, setStream] = useState();
@@ -15,6 +16,15 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
   const [analyser, setAnalyser] = useState();
   const [audioUrl, setAudioUrl] = useState();
   const [reAudioUrl, setReAudioUrl] = useState();
+
+  // 음성인식 API 사용
+  const [value, setValue] = useState("");
+  const { listen, listening, stop } = useSpeechRecognition({
+    onResult: (result) => {
+      // 음성인식 결과가 value 상태값으로 할당됩니다.
+      setValue(result);
+    },
+  });
 
   let voiceFile;
 
@@ -60,6 +70,11 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
         }
       };
     });
+
+    // 음성인식 API
+    {
+      listen();
+    }
   };
 
   // 사용자가 음성 녹음을 중지했을 때
@@ -80,9 +95,12 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
     // 메서드가 호출 된 노드 연결 해제
     analyser.disconnect();
     source.disconnect();
+
+    stop();
   };
 
   const onSubmitAudioFile = useCallback(() => {
+    console.log({ value });
     if (audioUrl) {
       console.log(audioUrl);
       console.log(URL.createObjectURL(audioUrl)); // 출력된 링크에서 녹음된 오디오 확인 가능
@@ -110,6 +128,7 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
     reader.onload = function (e) {
       // Base64로 인코딩한 후 다시 디코딩 해준다.
       const base64Audio = e.target.result.toString().split(",");
+      console.log(base64Audio[1]);
       const contentType = base64Audio[0].split(":")[1];
       const raw = window.atob(base64Audio[1]);
       const rawLength = raw.length;
@@ -127,8 +146,9 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
       });
       setReAudioUrl(reAudioBlob);
 
-      console.log(reAudioUrl);
       // reAudioUrl로 file을 만들어서 formData에 넣어서 전송하기
+
+      // base64Audio[1] base64, raw data를 쪼개서 form data에 넣어서 보내기
 
       onClickVoiceRecognition(base64Audio[1]);
     };
@@ -158,6 +178,9 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
         </Button>
       </Grid>
       <Grid item xs={12}>
+        <div>{value}</div>
+      </Grid>
+      <Grid item xs={12}>
         {reAudioUrl ? (
           <ReactAudioPlayer src={URL.createObjectURL(reAudioUrl)} controls />
         ) : undefined}
@@ -176,6 +199,7 @@ export default function VoiceRecognition({ onClickVoiceRecognition }) {
           {isCheckRec ? checkRec : checkedRec}
         </Grid>
       </Grid>
+      {listening}
     </div>
   );
 }

@@ -3,10 +3,19 @@ import { Button, TextField } from "@material-ui/core";
 import "./MainWordMeaning.css";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
+import { useSpeechRecognition } from "react-speech-kit";
 
 export default function MainWordMeaning({ handleMorpheme, item }) {
   const [checked, setChecked] = useState(false);
   const [searchBox, setSearchBox] = useState("");
+
+  // 음성인식
+  const { listen, listening, stop } = useSpeechRecognition({
+    onResult: (result) => {
+      // 음성인식 결과가 value 상태값으로 할당됩니다.
+      setSearchBox(result);
+    },
+  });
 
   const handleChange = ({ target }) => {
     setSearchBox(target.value);
@@ -46,6 +55,15 @@ export default function MainWordMeaning({ handleMorpheme, item }) {
       <Button color="primary" onClick={checkMorpheme} variant="contained">
         검색
       </Button>
+      <Button
+        color="primary"
+        variant="contained"
+        onMouseDown={(e) => listen()}
+        onMouseUp={stop}
+      >
+        🎤
+      </Button>
+      {listening && <div>음성인식 활성화 중</div>}
     </div>
   );
   const searchSuccess = morpheme.pos.map((item, index) => (
