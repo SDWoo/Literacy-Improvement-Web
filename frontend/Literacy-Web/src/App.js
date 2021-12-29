@@ -9,6 +9,8 @@ import Word from "./page/Word";
 import MyPage from "./page/MyPage";
 import WordRanking from "./components/WordRanking";
 import OAuthRedirectHandler from "./components/login/OAuthRedirectHandler";
+import Quiz from "./components/quiz/Quiz";
+import Summary from "./components/quiz/Summary";
 
 function App() {
   return (
@@ -17,12 +19,14 @@ function App() {
         <Route path="/" component={TopBar} />
         <Switch>
           <Route path="/Home" component={Main} />
+          <Route path="/Quiz" component={Quiz} />
           <Route path="/Login" component={Login} />
           <Route path="/SignUp" component={SignUp} />
           <Route path="/MyPage" component={MyPage} />
           <Route path="/Word/:keyword" component={Word} />
           <Route path="/Ranking" component={WordRanking} />
           <Route path="/kakaoAuth" component={OAuthRedirectHandler} />
+          <Route path="/Summary" component={Summary} />
         </Switch>
       </div>
     </BrowserRouter>

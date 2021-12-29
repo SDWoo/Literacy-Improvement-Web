@@ -100,9 +100,12 @@ function TopBar({
       <Button href="/Mypage" color="inherit">
         MyPage
       </Button>
+      |
+      <Button href="/Ranking" color="inherit">
+        Ranking
+      </Button>
     </div>
   );
-  console.log("isLoggedIn: " + isLoggedIn);
 
   // 사용자에게 보여지는 부분
   return (

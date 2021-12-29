@@ -9,9 +9,9 @@ import {
   paraphraseCheckRequest,
   morphemeCheckRequest,
   wordRankingRequest,
+  quizRequest,
 } from "../redux";
-import SentenceParaphrase from "../components/SentenceParaphrase";
-
+import Mainquiz from "../components/Mainquiz";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Main({
   dailyWordsList,
-  wordStatus,
+  quizStatus,
   dailyWordsRequest,
   oneWordRequest,
   isLoggedIn,
@@ -35,10 +35,11 @@ function Main({
   paraphraseCheckValid,
   morphemeCheckRequest,
   wordRankingRequest,
+  quizRequest,
   item,
 }) {
   useEffect(() => {
-    // 렌더링
+    quizRequest();
     dailyWordsRequest();
     wordRankingRequest();
   }, []);
@@ -68,7 +69,7 @@ function Main({
   const toastCheckParaphraseFailure = () => toast.error("확인 실패했습니다.");
 
   const onClickCheckParaphrase = (body) => {
-    paraphraseCheckRequest(body).then(() => { });
+    paraphraseCheckRequest(body).then(() => {});
   };
 
   if (paraphraseCheckResult === "paraphrase") {
@@ -88,11 +89,7 @@ function Main({
             ></MainWordOfTheDay>
           </Grid>
           <Grid item xs={4}>
-            <SentenceParaphrase
-              onClickCheckParaphrase={onClickCheckParaphrase}
-              paraphraseCheckValid={paraphraseCheckValid}
-              paraphraseResult={paraphraseResult}
-            ></SentenceParaphrase>
+            <Mainquiz quizStatus={quizStatus}></Mainquiz>
           </Grid>
           <Grid item xs={12}>
             <MainWordMeaning
@@ -119,6 +116,7 @@ function Main({
 }
 const mapStateToProps = (state) => {
   return {
+    quizStatus: state.quiz.status.quizStatus,
     dailyWordsList: state.dailyWords.status.dailyWordsList,
     isLoggedIn: state.kakaoAuth.status.isLoggedIn,
     paraphraseResult: state.paraphrase.status.result,
@@ -144,6 +142,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     wordRankingRequest: () => {
       return dispatch(wordRankingRequest());
+    },
+    quizRequest: () => {
+      return dispatch(quizRequest());
     },
   };
 };
