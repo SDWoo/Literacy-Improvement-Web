@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+어린이 문해력 향상을 위한 웹 서비스
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
